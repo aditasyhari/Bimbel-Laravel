@@ -5,7 +5,7 @@
 <head>
     <title>@yield('title')</title>
     @include('admin.layouts.top')
-
+    @stack('plugin-styles')
 </head>
 <!-- END: Head-->
 
@@ -20,14 +20,13 @@
 
 
     <!-- BEGIN: Main Menu-->
+<div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" data-scroll-to-active="true">
     @include('admin.layouts.menu')
+</div>
     <!-- END: Main Menu-->
 
     <!-- BEGIN: Content-->
     <div class="app-content content">
-
-        <div class="content-overlay"></div>
-        <div class="header-navbar-shadow"></div>
         @yield('content')
     </div>
     <!-- END: Content-->
@@ -41,6 +40,7 @@
 
     @include('admin.layouts.script')
 
+    @stack('plugin-scripts')
 
 </body>
 <!-- END: Body-->

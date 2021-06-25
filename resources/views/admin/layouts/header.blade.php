@@ -8,16 +8,6 @@
 
                     <li class="nav-item d-none d-lg-block"><a class="nav-link nav-link-expand"><i
                                 class="ficon feather icon-maximize"></i></a></li>
-                    <li class="nav-item nav-search"><a class="nav-link nav-link-search"><i
-                                class="ficon feather icon-search"></i></a>
-                        <div class="search-input">
-                            <div class="search-input-icon"><i class="feather icon-search primary"></i></div>
-                            <input class="input" type="text" placeholder="Explore Vuexy..." tabindex="-1"
-                                data-search="template-list">
-                            <div class="search-input-close"><i class="feather icon-x"></i></div>
-                            <ul class="search-list search-list-main"></ul>
-                        </div>
-                    </li>
                     <li class="dropdown dropdown-notification nav-item"><a class="nav-link nav-link-label" href="#"
                             data-toggle="dropdown"><i class="ficon feather icon-bell"></i><span
                                 class="badge badge-pill badge-primary badge-up">5</span></a>
@@ -98,12 +88,15 @@
                                     height="40" width="40"></span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item"  onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i
-                                class="feather icon-power"></i> Logout</a>
-                            </div>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                @csrf
-                            </form>
+                            <a class="dropdown-item" href="{{ url ('profil')}}"><i class="feather icon-user"></i> Profil</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item"
+                                onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i
+                                    class="feather icon-power"></i> Logout</a>
+                        </div>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
                     </li>
                 </ul>
             </div>
