@@ -19,33 +19,33 @@
                     <ul class="menu-content">
                         <li><a href="#"><i class="feather icon-tag"></i><span class="menu-item" data-i18n="List">Kelas Terbatas</span></a>
                             <ul class="menu-content">
-                                <li><a href="{{url('siswa-terbatas-sd')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="404">SD/MI</span></a>
+                                <li><a href="{{url('siswa-terbatas-sd')}}"><i class="feather icon-circle"></i><span class="menu-item">SD/MI</span></a>
                                 </li>
-                                <li><a href="{{url('siswa-terbatas-smp')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="500">SMP/MTS</span></a>
+                                <li><a href="{{url('siswa-terbatas-smp')}}"><i class="feather icon-circle"></i><span class="menu-item">SMP/MTS</span></a>
                                 </li>
-                                <li><a href="{{url('siswa-terbatas-sma_ipa')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="500">SMA/MA - IPA</span></a>
+                                <li><a href="{{url('siswa-terbatas-sma_ipa')}}"><i class="feather icon-circle"></i><span class="menu-item">SMA/MA - IPA</span></a>
                                 </li>
-                                <li><a href="{{url('siswa-terbatas-sma_ips')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="500">SMA/MA - IPS</span></a>
+                                <li><a href="{{url('siswa-terbatas-sma_ips')}}"><i class="feather icon-circle"></i><span class="menu-item">SMA/MA - IPS</span></a>
                                 </li>
-                                <li><a href="{{url('siswa-terbatas-sbmptn')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="500">SBMPTN</span></a>
+                                <li><a href="{{url('siswa-terbatas-sbmptn')}}"><i class="feather icon-circle"></i><span class="menu-item">SBMPTN</span></a>
                                 </li>
-                                <li><a href="{{url('siswa-terbatas-kedinasan')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="500">Kedinasan / Ikatan Dinas</span></a>
+                                <li><a href="{{url('siswa-terbatas-kedinasan')}}"><i class="feather icon-circle"></i><span class="menu-item">Kedinasan / Ikatan Dinas</span></a>
                                 </li>
                             </ul>
                         </li>
                         <li><a href="#"><i class="feather icon-tag"></i><span class="menu-item" data-i18n="View">Kelas Regular</span></a>
                             <ul class="menu-content">
-                                <li><a href="{{url('siswa-regular-sd')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="404">SD/MI</span></a>
+                                <li><a href="{{url('siswa-regular-sd')}}"><i class="feather icon-circle"></i><span class="menu-item">SD/MI</span></a>
                                 </li>
-                                <li><a href="{{url('siswa-regular-smp')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="500">SMP/MTS</span></a>
+                                <li><a href="{{url('siswa-regular-smp')}}"><i class="feather icon-circle"></i><span class="menu-item">SMP/MTS</span></a>
                                 </li>
-                                <li><a href="{{url('siswa-regular-sma_ipa')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="500">SMA/MA - IPA</span></a>
+                                <li><a href="{{url('siswa-regular-sma_ipa')}}"><i class="feather icon-circle"></i><span class="menu-item">SMA/MA - IPA</span></a>
                                 </li>
-                                <li><a href="{{url('siswa-regular-sma_ips')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="500">SMA/MA - IPS</span></a>
+                                <li><a href="{{url('siswa-regular-sma_ips')}}"><i class="feather icon-circle"></i><span class="menu-item">SMA/MA - IPS</span></a>
                                 </li>
-                                <li><a href="{{url('siswa-regular-sbmptn')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="500">SBMPTN</span></a>
+                                <li><a href="{{url('siswa-regular-sbmptn')}}"><i class="feather icon-circle"></i><span class="menu-item">SBMPTN</span></a>
                                 </li>
-                                <li><a href="{{url('siswa-regular-kedinasan')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="500">Kedinasan / Ikatan Dinas</span></a>
+                                <li><a href="{{url('siswa-regular-kedinasan')}}"><i class="feather icon-circle"></i><span class="menu-item">Kedinasan / Ikatan Dinas</span></a>
                                 </li>
                             </ul>
                         </li>
@@ -54,43 +54,59 @@
                 </li>
                 <li class=" nav-item"><a href="#"><i class="feather icon-check-square"></i><span class="menu-title" data-i18n="User">Absen</span></a>
                     <ul class="menu-content">
-                        <li><a href="{{ url('/user-list') }}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="List">List</span></a>
+                        <li><a href="#"><i class="feather icon-user-check" ></i><span class="menu-item" data-i18n="List">Kelas Terbatas</span></a>
+                            <ul class="menu-content">
+                                <li><a href="{{url('absen-siswa-terbatas-sd')}}"><i class="feather icon-plus-circle"></i><span class="menu-item">SD/MI</span></a>
+                                </li>
+                                <li><a href="{{url('absen-siswa-terbatas-smp')}}"><i class="feather icon-plus-circle"></i><span class="menu-item">SMP/MTS</span></a>
+                                </li>
+                                <li><a href="{{url('absen-siswa-terbatas-sma_ips')}}"><i class="feather icon-plus-circle"></i><span class="menu-item">SMA/MA - IPA</span></a>
+                                </li>
+                                <li><a href="{{url('absen-siswa-terbatas-sma_ipa')}}"><i class="feather icon-plus-circle"></i><span class="menu-item">SMA/MA - IPS</span></a>
+                                </li>
+                                <li><a href="{{url('absen-siswa-terbatas-sbmptn')}}"><i class="feather icon-plus-circle"></i><span class="menu-item">SBMPTN</span></a>
+                                </li>
+                                <li><a href="{{url('absen-siswa-terbatas-kedinasan')}}"><i class="feather icon-plus-circle"></i><span class="menu-item">Kedinasan / Ikatan Dinas</span></a>
+                                </li>
+                            </ul>
                         </li>
-                        <li><a href="{{ url('/user-view') }}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="View">View</span></a>
-                        </li>
-                        <li><a href="{{ url('/user-edit') }}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Edit">Edit</span></a>
+                        <li><a href="#"><i class="feather icon-user-check"></i><span class="menu-item" data-i18n="View">Kelas Regular</span></a>
+                            <ul class="menu-content">
+                                <li><a href="{{url('absen-siswa-regular-sd')}}"><i class="feather icon-plus-circle"></i><span class="menu-item">SD/MI</span></a>
+                                </li>
+                                <li><a href="{{url('absen-siswa-regular-smp')}}"><i class="feather icon-plus-circle"></i><span class="menu-item">SMP/MTS</span></a>
+                                </li>
+                                <li><a href="{{url('absen-siswa-regular-sma_ipa')}}"><i class="feather icon-plus-circle"></i><span class="menu-item">SMA/MA - IPA</span></a>
+                                </li>
+                                <li><a href="{{url('absen-siswa-regular-sma_ips')}}"><i class="feather icon-plus-circle"></i><span class="menu-item">SMA/MA - IPS</span></a>
+                                </li>
+                                <li><a href="{{url('absen-siswa-regular-sbmptn')}}"><i class="feather icon-plus-circle"></i><span class="menu-item">SBMPTN</span></a>
+                                </li>
+                                <li><a href="{{url('absen-siswa-regular-kedinasan')}}"><i class="feather icon-plus-circle"></i><span class="menu-item">Kedinasan / Ikatan Dinas</span></a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </li>
                 <li class=" nav-item"><a href="#"><i class="feather icon-credit-card"></i><span class="menu-title" data-i18n="Card">Transaksi</span></a>
                     <ul class="menu-content">
-                        <li><a href="card-basic.html"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Basic">Basic</span></a>
+                        <li><a href="{{url('transaksi-kelas-regular')}}"><i class="fa fa-money"></i><span class="menu-item" data-i18n="Regular">Regular</span></a>
                         </li>
-                        <li><a href="card-advance.html"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Advance">Advance</span></a>
-                        </li>
-                        <li><a href="card-statistics.html"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Statistics">Statistics</span></a>
-                        </li>
-                        <li><a href="card-analytics.html"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Analytics">Analytics</span></a>
-                        </li>
-                        <li><a href="card-actions.html"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Card Actions">Card Actions</span></a>
+                        <li><a href="{{url('transaksi-kelas-terbatas')}}"><i class="fa fa-money"></i><span class="menu-item" data-i18n="Terbatas">Terbatas</span></a>
                         </li>
                     </ul>
                 </li>
                 <li class=" nav-item"><a href="#"><i class="feather icon-file-text"></i><span class="menu-title" data-i18n="Miscellaneous">Jadwal</span></a>
                     <ul class="menu-content">
-                        <li><a href="page-coming-soon.html"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Coming Soon">Coming Soon</span></a>
+                        <li><a href="{{url('jadwal-kelas-terbatas')}}"><i class="feather icon-list"></i><span class="menu-item" data-i18n="Jadwal Terbatas">Jadwal Terbatas</span></a>
                         </li>
-                        <li><a href="#"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Error">Error</span></a>
-                            <ul class="menu-content">
-                                <li><a href="error-404.html"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="404">404</span></a>
-                                </li>
-                                <li><a href="error-500.html"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="500">500</span></a>
-                                </li>
-                            </ul>
+                        <li><a href="{{url('jadwal-kelas-regular')}}"><i class="feather icon-grid"></i><span class="menu-item" data-i18n="Jadwal Regular">Jadwal Regular</span></a>
                         </li>
-                        <li><a href="page-not-authorized.html"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Not Authorized">Not Authorized</span></a>
-                        </li>
-                        <li><a href="page-maintenance.html"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Maintenance">Maintenance</span></a>
+                    </ul>
+                </li>
+                <li class=" nav-item"><a href="#"><i class="feather icon-settings"></i><span class="menu-title" data-i18n="Miscellaneous">Settings</span></a>
+                    <ul class="menu-content">
+                        <li><a href="{{url('settings-carousel')}}"><i class="feather icon-sidebar"></i><span class="menu-item" data-i18n="slider carousel">Slider Carousel</span></a>
                         </li>
                     </ul>
                 </li>
