@@ -26,6 +26,112 @@ Route::middleware(['auth'])
         Route::get('/', function () {
             return view('admin.dashboard');
         });
+
+        
+        Route::get('/profil', function () {
+            return view('admin.profil');
+        });
+
+
+        // list siswa regular
+        Route::get('/siswa-regular-sd', function () {
+            return view('admin.siswa.kelas_regular.sd.index');
+        });
+        Route::get('/siswa-regular-smp', function () {
+            return view('admin.siswa.kelas_regular.smp.index');
+        });
+        Route::get('/siswa-regular-sma_ips', function () {
+            return view('admin.siswa.kelas_regular.sma_ips.index');
+        });
+        Route::get('/siswa-regular-sma_ipa', function () {
+            return view('admin.siswa.kelas_regular.sma_ipa.index');
+        });
+        Route::get('/siswa-regular-sbmptn', function () {
+            return view('admin.siswa.kelas_regular.sbmptn.index');
+        });
+        Route::get('/siswa-regular-kedinasan', function () {
+            return view('admin.siswa.kelas_regular.kedinasan.index');
+        });
+
+        // list siswa terbatas
+        Route::get('/siswa-terbatas-sd', function () {
+            return view('admin.siswa.kelas_terbatas.sd.index');
+        });
+        Route::get('/siswa-terbatas-smp', function () {
+            return view('admin.siswa.kelas_terbatas.smp.index');
+        });
+        Route::get('/siswa-terbatas-sma_ips', function () {
+            return view('admin.siswa.kelas_terbatas.sma_ips.index');
+        });
+        Route::get('/siswa-terbatas-sma_ipa', function () {
+            return view('admin.siswa.kelas_terbatas.sma_ipa.index');
+        });
+        Route::get('/siswa-terbatas-sbmptn', function () {
+            return view('admin.siswa.kelas_terbatas.sbmptn.index');
+        });
+        Route::get('/siswa-terbatas-kedinasan', function () {
+            return view('admin.siswa.kelas_terbatas.kedinasan.index');
+        });
+
+        // absensi regular
+        Route::get('/absen-siswa-regular-sd', function () {
+            return view('admin.absen.kelasRegular.sd.index');
+        });
+        Route::get('/absen-siswa-regular-smp', function () {
+            return view('admin.absen.kelasRegular.smp.index');
+        });
+        Route::get('/absen-siswa-regular-sma_ips', function () {
+            return view('admin.absen.kelasRegular.sma_ips.index');
+        });
+        Route::get('/absen-siswa-regular-sma_ipa', function () {
+            return view('admin.absen.kelasRegular.sma_ipa.index');
+        });
+        Route::get('/absen-siswa-regular-sbmptn', function () {
+            return view('admin.absen.kelasRegular.sbmptn.index');
+        });
+        Route::get('/absen-siswa-regular-kedinasan', function () {
+            return view('admin.absen.kelasRegular.kedinasan.index');
+        });
+        // absensi terbatas
+            Route::get('/absen-siswa-terbatas-sd', function () {
+                return view('admin.absen.kelasTerbatas.sd.index');
+            });
+            Route::get('/absen-siswa-terbatas-smp', function () {
+                return view('admin.absen.kelasTerbatas.smp.index');
+            });
+            Route::get('/absen-siswa-terbatas-sma_ips', function () {
+                return view('admin.absen.kelasTerbatas.sma_ips.index');
+            });
+            Route::get('/absen-siswa-terbatas-sma_ipa', function () {
+                return view('admin.absen.kelasTerbatas.sma_ipa.index');
+            });
+            Route::get('/absen-siswa-terbatas-sbmptn', function () {
+                return view('admin.absen.kelasTerbatas.sbmptn.index');
+            });
+            Route::get('/absen-siswa-terbatas-kedinasan', function () {
+                return view('admin.absen.kelasTerbatas.kedinasan.index');
+            });
+
+        // Transaksi
+        Route::get('/transaksi-kelas-terbatas', function () {
+            return view('admin.transaksi.terbatas.index');
+        });
+        Route::get('/transaksi-kelas-regular', function () {
+            return view('admin.transaksi.regular.index');
+        });
+        // Jadwal
+        Route::get('/jadwal-kelas-terbatas', function () {
+            return view('admin.jadwal.terbatas.index');
+        });
+        Route::get('/jadwal-kelas-regular', function () {
+            return view('admin.jadwal.regular.index');
+        });
+
+        // settings
+        Route::get('/settings-carousel', function () {
+            return view('admin.settings.slider.index');
+        });
+
     });
 
     Route::group(['prefix' => 'siswa', 'middleware' => 'siswa', 'name' => 'siswa'], function () {
@@ -40,118 +146,6 @@ Route::middleware(['auth'])
     Route::group(['prefix' => 'ortu', 'middleware' => 'ortu', 'name' => 'ortu'], function () {
 
     });
-
-
-
-
-
-
-
-
-    Route::get('/profil', function () {
-        return view('admin.profil');
-    });
-
-
-    // list siswa regular
-    Route::get('/siswa-regular-sd', function () {
-        return view('admin.siswa.kelas_regular.sd.index');
-    });
-    Route::get('/siswa-regular-smp', function () {
-        return view('admin.siswa.kelas_regular.smp.index');
-    });
-    Route::get('/siswa-regular-sma_ips', function () {
-        return view('admin.siswa.kelas_regular.sma_ips.index');
-    });
-    Route::get('/siswa-regular-sma_ipa', function () {
-        return view('admin.siswa.kelas_regular.sma_ipa.index');
-    });
-    Route::get('/siswa-regular-sbmptn', function () {
-        return view('admin.siswa.kelas_regular.sbmptn.index');
-    });
-    Route::get('/siswa-regular-kedinasan', function () {
-        return view('admin.siswa.kelas_regular.kedinasan.index');
-    });
-
-    // list siswa terbatas
-    Route::get('/siswa-terbatas-sd', function () {
-        return view('admin.siswa.kelas_terbatas.sd.index');
-    });
-    Route::get('/siswa-terbatas-smp', function () {
-        return view('admin.siswa.kelas_terbatas.smp.index');
-    });
-    Route::get('/siswa-terbatas-sma_ips', function () {
-        return view('admin.siswa.kelas_terbatas.sma_ips.index');
-    });
-    Route::get('/siswa-terbatas-sma_ipa', function () {
-        return view('admin.siswa.kelas_terbatas.sma_ipa.index');
-    });
-    Route::get('/siswa-terbatas-sbmptn', function () {
-        return view('admin.siswa.kelas_terbatas.sbmptn.index');
-    });
-    Route::get('/siswa-terbatas-kedinasan', function () {
-        return view('admin.siswa.kelas_terbatas.kedinasan.index');
-    });
-
-    // absensi regular
-    Route::get('/absen-siswa-regular-sd', function () {
-        return view('admin.absen.kelasRegular.sd.index');
-    });
-    Route::get('/absen-siswa-regular-smp', function () {
-        return view('admin.absen.kelasRegular.smp.index');
-    });
-    Route::get('/absen-siswa-regular-sma_ips', function () {
-        return view('admin.absen.kelasRegular.sma_ips.index');
-    });
-    Route::get('/absen-siswa-regular-sma_ipa', function () {
-        return view('admin.absen.kelasRegular.sma_ipa.index');
-    });
-    Route::get('/absen-siswa-regular-sbmptn', function () {
-        return view('admin.absen.kelasRegular.sbmptn.index');
-    });
-    Route::get('/absen-siswa-regular-kedinasan', function () {
-        return view('admin.absen.kelasRegular.kedinasan.index');
-    });
-    // absensi terbatas
-        Route::get('/absen-siswa-terbatas-sd', function () {
-            return view('admin.absen.kelasTerbatas.sd.index');
-        });
-        Route::get('/absen-siswa-terbatas-smp', function () {
-            return view('admin.absen.kelasTerbatas.smp.index');
-        });
-        Route::get('/absen-siswa-terbatas-sma_ips', function () {
-            return view('admin.absen.kelasTerbatas.sma_ips.index');
-        });
-        Route::get('/absen-siswa-terbatas-sma_ipa', function () {
-            return view('admin.absen.kelasTerbatas.sma_ipa.index');
-        });
-        Route::get('/absen-siswa-terbatas-sbmptn', function () {
-            return view('admin.absen.kelasTerbatas.sbmptn.index');
-        });
-        Route::get('/absen-siswa-terbatas-kedinasan', function () {
-            return view('admin.absen.kelasTerbatas.kedinasan.index');
-        });
-
-    // Transaksi
-    Route::get('/transaksi-kelas-terbatas', function () {
-        return view('admin.transaksi.terbatas.index');
-    });
-    Route::get('/transaksi-kelas-regular', function () {
-        return view('admin.transaksi.regular.index');
-    });
-    // Jadwal
-    Route::get('/jadwal-kelas-terbatas', function () {
-        return view('admin.jadwal.terbatas.index');
-    });
-    Route::get('/jadwal-kelas-regular', function () {
-        return view('admin.jadwal.regular.index');
-    });
-
-    // settings
-    Route::get('/settings-carousel', function () {
-        return view('admin.settings.slider.index');
-    });
-    
 });
 
 
