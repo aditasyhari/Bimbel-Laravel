@@ -104,6 +104,9 @@
                         </li>
                     </ul>
                 </li>
+                <li class=" nav-item">
+                    <a href="{{ route('kelas.index') }}"><i class="feather icon-grid"></i><span class="menu-title" data-i18n="Miscellaneous">Kelas</span></a>
+                </li>
                 <li class=" nav-item"><a href="#"><i class="feather icon-settings"></i><span class="menu-title" data-i18n="Miscellaneous">Settings</span></a>
                     <ul class="menu-content">
                         <li><a href="{{url('admin/settings-carousel')}}"><i class="feather icon-sidebar"></i><span class="menu-item" data-i18n="slider carousel">Slider Carousel</span></a>

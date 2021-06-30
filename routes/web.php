@@ -27,6 +27,8 @@ Route::middleware(['auth'])
             return view('admin.dashboard');
         });
 
+        Route::resource('kelas', 'KelasController');
+
         
         Route::get('/profil', function () {
             return view('admin.profil');
