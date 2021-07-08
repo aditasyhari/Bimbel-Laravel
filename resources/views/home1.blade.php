@@ -73,17 +73,12 @@
                                 <div class="header-info-left">
                                     <ul>
                                         <li>
-
-
-
                                             <i class="fas "></i><a href="{{ url('login') }}">Login</a> |
                                             <a href="{{ url('register') }}">Register</a>
                                         </li>
                                         <li class="hide-mobile"><i class="fas "></i>Jl. Dewi Sartika No. 8A, Banaran
                                             Kertosono</li>
-
                                         <li class="hide-mobile"><i class="fas "></i>info@email.com</li>
-
                                     </ul>
                                 </div>
                                 <div class="header-info-right    d-md-none"><a href="{{ url('listkeranjang') }}"><i
@@ -136,7 +131,7 @@
                                                 <a href="{{ url('kelas') }}">Kelas</a>
                                             </li>
                                             <li>
-                                                <a href="http://traineasyv3.intermaticsng.com/sessions">Kontak</a>
+                                                <a href="#contact">Kontak</a>
                                             </li>
                                             <!-- <li>
                                             <a href="http://traineasyv3.intermaticsng.com/blog" >Blog</a>
@@ -358,7 +353,7 @@
 
     <footer>
         <!-- Footer Start-->
-        <div class="footer-area footer-padding">
+        <div class="footer-area footer-padding" id="contact">
             <div class="container">
                 <div class="row d-flex justify-content-between">
                     <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">

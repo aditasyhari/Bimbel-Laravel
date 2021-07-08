@@ -15,9 +15,20 @@ use Illuminate\Support\Facades\Route;
 */
 Auth::routes();
 
+// frontend
 Route::get('/', function () {
-    return view('home1');
+    return view('frontend.dashboard.index');
 });
+Route::get('/kelas', function () {
+    return view('frontend.kelas.index');
+});
+Route::get('/detail-terbatas', function () {
+    return view('frontend.detail.terbatas');
+});
+Route::get('/detail-regular', function () {
+    return view('frontend.detail.regular');
+});
+
 Route::middleware(['auth'])
 ->group(function() {
 
@@ -179,13 +190,9 @@ Route::get('/home', function () {
     return view('home');
 });
 
-Route::get('/kelas', function () {
-    return view('kelas');
-});
 
-Route::get('/detailkelas', function () {
-    return view('detailkelas');
-});
+
+
 
 Route::get('/keranjang', function () {
     return view('keranjang');
