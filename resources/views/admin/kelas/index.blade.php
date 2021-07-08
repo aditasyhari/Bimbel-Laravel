@@ -38,6 +38,7 @@ Kelas Dasapratama
                     <thead>
                         <tr>
                             <th></th>
+                            <th>Thumbnail</th>
                             <th>Nama Kelas</th>
                             <th>Kategori</th>
                             <th>Harga</th>
@@ -49,6 +50,14 @@ Kelas Dasapratama
                     @foreach($kelas as $k)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
+                            <td>
+                                <img src="{{ asset('app-assets/images/thumbnail/kelas/'.$k->thumbnail) }}" alt="" class=""
+                                style="
+                                    max-width: 150px;
+                                    max-height: 100px;
+                                "
+                                >
+                            </td>
                             <td class="product-name">{{ $k->nama_kelas }}</td>
                             <td class="text-uppercase">{{ $k->kategori }}</td>
                             <td class="product-price">Rp {{ $k->harga }}</td>
@@ -94,7 +103,7 @@ Kelas Dasapratama
             <!-- add new sidebar starts -->
             <div class="add-new-data-sidebar">
                 <div class="overlay-bg"></div>
-                <form action="{{ route('kelas.store') }}" method="POST">
+                <form action="{{ route('kelas.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="add-new-data">
                     <div class="div mt-2 px-2 d-flex new-data-title justify-content-between">
@@ -111,6 +120,10 @@ Kelas Dasapratama
                                 <div class="col-sm-12 data-field-col">
                                     <label for="data-name">Nama Kelas</label>
                                     <input type="text" class="form-control" id="data-name" name="nama_kelas" required>
+                                </div>
+                                <div class="col-sm-12 data-field-col">
+                                    <label for="data-name">Thumbnail Kelas</label>
+                                    <input type="file" class="form-control" id="data-name" name="thumbnail" required>
                                 </div>
                                 <div class="col-sm-12 data-field-col">
                                     <label for="data-category"> Kategori </label>
@@ -194,12 +207,10 @@ Kelas Dasapratama
     }
 
     function onlyNumberKey(evt) {
-         
-         // Only ASCII character in that range allowed
-         var ASCIICode = (evt.which) ? evt.which : evt.keyCode
-         if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
-             return false;
-         return true;
+        var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+        if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
+            return false;
+        return true;
     }
 
     tinymce.init({

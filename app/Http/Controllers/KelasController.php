@@ -39,9 +39,25 @@ class KelasController extends Controller
     public function store(Request $request)
     {
         //
-        Kelas::create($request->all());
+        if($request->thumbnail != '') {
+            $path = public_path().'/app-assets/images/thumbnail/kelas/';
+            
+            $thumbnail = $request->thumbnail;
+            $thumbnail_name = time().'_'.$thumbnail->getClientOriginalName();
+            $thumbnail->move($path, $thumbnail_name);
+            
+            Kelas::create([
+                'nama_kelas' => $request->nama_kelas,
+                'thumbnail' => $thumbnail_name,
+                'desc' => $request->desc,
+                'harga' => $request->harga,
+                'kategori' => $request->kategori,
+                'kategori_kelas' => $request->kategori_kelas,
+            ]);
 
-        return back()->with('status', 'Data Kelas berhasil disimpan');
+            return back()->with('status', 'Data Kelas berhasil disimpan');
+        }
+
     }
 
     /**
@@ -81,9 +97,34 @@ class KelasController extends Controller
         //
         $kelas = Kelas::find($id);
 
-        $kelas->update($request->all());
+        if($request->thumbnail != '') {
+            $path = public_path().'/app-assets/images/thumbnail/kelas/';
+            
+            $thumbnail = $request->thumbnail;
+            $thumbnail_name = time().'_'.$thumbnail->getClientOriginalName();
+            $thumbnail->move($path, $thumbnail_name);
 
-        return back()->with('status', 'Data Kelas berhasil diperbarui');
+            $thumbnail_old = $path.$kelas->thumbnail;
+            if($thumbnail_old != '' || $thumbnail_old != null) {
+                unlink($thumbnail_old);
+            }
+            
+            $kelas->update([
+                'nama_kelas' => $request->nama_kelas,
+                'thumbnail' => $thumbnail_name,
+                'desc' => $request->desc,
+                'harga' => $request->harga,
+                'kategori' => $request->kategori,
+                'kategori_kelas' => $request->kategori_kelas,
+            ]);
+
+            return back()->with('status', 'Data Kelas berhasil diperbarui');
+        } else {
+            $kelas->update($request->all());
+            return back()->with('status', 'Data Kelas berhasil diperbarui');
+        }
+
+
     }
 
     /**
@@ -95,6 +136,14 @@ class KelasController extends Controller
     public function destroy($id)
     {
         //
+        $path = public_path().'/app-assets/images/thumbnail/kelas/';
+
+        $kelas = Kelas::find($id);
+        $thumbnail = $path.$kelas->thumbnail;
+        if($thumbnail != '' || $thumbnail != null) {
+            unlink($thumbnail);
+        }
+
         Kelas::destroy($id);
 
         return back()->with('status', 'Data Kelas berhasil dihapus!!');

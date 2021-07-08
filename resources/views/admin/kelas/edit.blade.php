@@ -21,7 +21,7 @@ Edit Kelas Dasapratama
             <div class="row">
                 <div class="col-12 col-md-8 col-lg-8">
                 <div class="card">
-                    <form action="{{ route('kelas.update', ['kela' => $k->id]) }}" method="POST">
+                    <form action="{{ route('kelas.update', ['kela' => $k->id]) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('put')
                         <div class="add-new-data">
@@ -39,6 +39,16 @@ Edit Kelas Dasapratama
                                         <div class="col-sm-12 data-field-col mb-2">
                                             <label for="data-name">Nama Kelas</label>
                                             <input type="text" class="form-control" id="data-name" name="nama_kelas" value="{{ $k->nama_kelas }}" required>
+                                        </div>
+                                        <img src="{{ asset('app-assets/images/thumbnail/kelas/'.$k->thumbnail) }}" alt=""
+                                            style="
+                                                max-width: 250px;
+                                            "
+                                        >
+                                        <div class="col-sm-12 data-field-col mb-2">
+                                            <label for="data-name">Thumbnail Kelas</label><br>
+                                            <label class="text-secondary">(abaikan jika tidak ingin menggani thumbnail)</label>
+                                            <input type="file" class="form-control" id="data-name" name="thumbnail">
                                         </div>
                                         <div class="col-sm-12 data-field-col mb-2">
                                             <label for="data-category"> Kategori </label>
