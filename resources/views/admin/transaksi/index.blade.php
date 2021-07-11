@@ -62,7 +62,8 @@ button.btn.btn-outline-primary {
                                 @if($t->bukti == '')
                                     <h5>Belum<br>Ada</h5>
                                 @else
-                                    <img src="{{asset('app-assets/images/elements/bukti-tf/'.$t->bukti)}}" alt="Bukti Transfer">
+                                    <img src="{{asset('app-assets/images/elements/bukti-tf/'.$t->bukti)}}" alt="Bukti Transfer"><br>
+                                    <a class="ml-2 btn btn-sm btn-primary" href="{{asset('app-assets/images/elements/bukti-tf/'.$t->bukti)}}" target="_blank" rel="noopener noreferrer">Lihat</a>
                                 @endif
                             </td>
                             <?php
@@ -128,7 +129,7 @@ button.btn.btn-outline-primary {
             <!-- dataTable ends -->
 
             <!-- add new sidebar starts -->
-            <div class="add-new-data-sidebar">
+            <!-- <div class="add-new-data-sidebar">
                 <div class="overlay-bg"></div>
                 <div class="add-new-data">
                     <div class="div mt-2 px-2 d-flex new-data-title justify-content-between">
@@ -185,7 +186,7 @@ button.btn.btn-outline-primary {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <!-- add new sidebar ends -->
         </section>
         <!-- Data list view end -->
@@ -203,4 +204,5 @@ button.btn.btn-outline-primary {
 <script src="{{asset('app-assets/vendors/js/tables/datatable/dataTables.select.min.js')}}"></script>
 <script src="{{asset('app-assets/vendors/js/tables/datatable/datatables.checkboxes.min.js')}}"></script>
 <script src="{{asset('app-assets/js/scripts/ui/data-list-view.js')}}"></script>
+
 @endpush
