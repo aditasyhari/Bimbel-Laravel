@@ -8,8 +8,21 @@
                                 <div class="header-info-left">
                                     <ul>
                                         <li>
-                                            <i class="fas "></i><a href="{{ url('login') }}">Login</a> |
-                                            <a href="{{ url('register') }}">Register</a>
+                                            <i class="fas "></i>
+                                            @if (Route::has('login'))
+                                                @auth
+                                                    @if (Auth()->user()->role == "admin")
+                                                        <a href="{{ url('/admin') }}" class="">Dashboard</a>
+                                                    @elseif(Auth()->user()->role == "siswa")
+                                                        <a href="{{ url('/siswa') }}" class="">Dashboard</a>
+                                                    @elseif(Auth()->user()->role == "ortu")
+                                                        <a href="{{ url('/ortu') }}" class="">Dashboard</a>
+                                                    @endif
+                                                @else
+                                                    <a href="{{ url('login') }}">Login</a> |
+                                                    <a href="{{ url('register') }}">Register</a>
+                                                @endauth
+                                            @endif
                                         </li>
                                         <li class="hide-mobile"><i class="fas "></i>Jl. Dewi Sartika No. 8A, Banaran
                                             Kertosono</li>

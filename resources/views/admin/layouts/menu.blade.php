@@ -88,13 +88,8 @@
                         </li>
                     </ul>
                 </li>
-                <li class=" nav-item"><a href="#"><i class="feather icon-credit-card"></i><span class="menu-title" data-i18n="Card">Transaksi</span></a>
-                    <ul class="menu-content">
-                        <li><a href="{{url('admin/transaksi-kelas-regular')}}"><i class="fa fa-money"></i><span class="menu-item" data-i18n="Regular">Regular</span></a>
-                        </li>
-                        <li><a href="{{url('admin/transaksi-kelas-terbatas')}}"><i class="fa fa-money"></i><span class="menu-item" data-i18n="Terbatas">Terbatas</span></a>
-                        </li>
-                    </ul>
+                <li class=" nav-item">
+                    <a href="{{ url('/admin/transaksi') }}"><i class="feather icon-credit-card"></i><span class="menu-title" data-i18n="Card">Transaksi</span></a>
                 </li>
                 <li class=" nav-item"><a href="#"><i class="feather icon-file-text"></i><span class="menu-title" data-i18n="Miscellaneous">Jadwal</span></a>
                     <ul class="menu-content">

@@ -1,6 +1,6 @@
-@extends('admin.layouts.master')
+@extends('pengguna.layouts.master')
 @section('title')
-Transaksi Kelas Regular
+Transaksi Siswa
 @endsection
 @push('plugin-styles')
 <link rel="stylesheet" type="text/css" href="{{asset('app-assets/vendors/css/file-uploaders/dropzone.min.css')}}">
@@ -9,6 +9,12 @@ Transaksi Kelas Regular
 <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/core/colors/palette-gradient.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/plugins/file-uploaders/dropzone.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/pages/data-list-view.css')}}">
+
+<style>
+button.btn.btn-outline-primary {
+    display: none;
+}
+</style>
 @endpush
 @section('content')
 <div class="content-overlay"></div>
@@ -20,64 +26,77 @@ Transaksi Kelas Regular
             <div class="action-btns d-none">
                 <div class="btn-dropdown mr-1 mb-1">
                     <div class="btn-group dropdown actions-dropodown">
-                        <button type="button" class="btn btn-white px-1 py-1 dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Actions
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="#"><i class="feather icon-trash"></i>Delete</a>
-                            <a class="dropdown-item" href="#"><i class="feather icon-archive"></i>Archive</a>
-                            <a class="dropdown-item" href="#"><i class="feather icon-file"></i>Print</a>
-                            <a class="dropdown-item" href="#"><i class="feather icon-save"></i>Another Action</a>
-                        </div>
+                        <h5 class="mt-1 mb-1 pl-2 pr-2">Riwayat Transaksi</h5>
                     </div>
                 </div>
             </div>
             <!-- dataTable starts -->
             <div class="table-responsive">
-                <table class="table data-thumb-view">
+                <table id="myTable" class="table data-thumb-view">
                     <thead>
                         <tr>
                             <th></th>
                             <th>Bukti Transfer</th>
-                            <th>Nama</th>
-                            <th>Email</th>
                             <th>Kelas</th>
                             <th>Kategori</th>
+                            <th>Kategori Kelas</th>
                             <th>Harga</th>
+                            <th>Status</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach($u->kelas as $k)
                         <tr>
                             <td></td>
-                            <td class="product-img"><img src="{{asset('app-assets/images/elements/apple-watch.png')}}" alt="Img placeholder">
-                            </td>
-                            <td class="product-name">Sahrul</td>
-                            <td class="product-category">Sahrul@example.com</td>
+                            @foreach($k->transaksi as $t)
+                                <td class="product-img">
+                                    @if($t->bukti == '')
+                                        <h5>Belum<br>Ada</h5>
+                                    @else
+                                        <img src="{{asset('app-assets/images/elements/bukti-tf/'.$t->bukti)}}" alt="Bukti Transfer">
+                                    @endif
+                                </td>
+                            @endforeach
+                            <td class="product-name">{{ $k->nama_kelas }}</td>
+                            <td class="product-category">{{ $k->kategori }}</td>
                             <td>
-                                SD
-                            </td>
-                            <td>
-                                <div class="chip chip-info">
+                                <?php
+                                    if($k->kategori_kelas == 'terbatas') {
+                                        $chip = 'chip-warning';
+                                    } else {
+                                        $chip = 'chip-primary';
+                                    }
+                                ?>
+                                
+                                <div class="chip {{ $chip }}">
                                     <div class="chip-body">
-                                        <div class="chip-text">Regular</div>
+                                        <div class="chip-text text-capitalize">{{ $k->kategori_kelas }}</div>
                                     </div>
                                 </div>
                             </td>
-                            <td class="product-price">$69.99</td>
-                            <td>
-                                <a class="avatar bg-success" title="verifikasi">
-                                    <div href="#" class="avatar-content">
-                                            <i class="avatar-icon text-white feather icon-check-circle"></i>
-                                    </div>
-                                </a>
-                                <a class="avatar bg-danger" title="tolak">
-                                    <div href="#" class="avatar-content">
-                                            <i class="avatar-icon text-white feather icon-x-circle"></i>
-                                    </div>
-                                </a>
-                            </td>
+                            <td class="product-price">Rp {{ number_format($k->harga, 0, ",",".") }}</td>
+                            @foreach($k->transaksi as $t)
+                                <td class="text-capitalize">{{ $t->status_bayar }}</td>
+                                <td>
+                                    @if($t->status_bayar == 'lunas')
+                                        <div class="text-success">Sudah Dibayar</div>
+                                    @else
+                                        <form id="form-bukti{{$t->id}}" action="{{ url('/siswa/transaksi') }}" method="POST" enctype="multipart/form-data">
+                                        @csrf
+                                            <div class="input-group">
+                                                <div class="custom-file" style="max-width: 180px;">
+                                                    <input type="hidden" value="{{ $t->id }}" name="id">
+                                                    <input type="file" class="custom-file-input" name="bukti" accept="image/*" onchange="$('#form-bukti{{$t->id}}').submit()">
+                                                    <label class="custom-file-label">Upload Bukti</label>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    @endif
+                                </td>
+                            @endforeach
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -159,4 +178,31 @@ Transaksi Kelas Regular
 <script src="{{asset('app-assets/vendors/js/tables/datatable/dataTables.select.min.js')}}"></script>
 <script src="{{asset('app-assets/vendors/js/tables/datatable/datatables.checkboxes.min.js')}}"></script>
 <script src="{{asset('app-assets/js/scripts/ui/data-list-view.js')}}"></script>
+
+@if(session('status'))
+    <script>
+        $(function() {
+            $('#staticBackdrop').modal('show');
+        });
+    </script>
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Berhasil !!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            <div class="modal-body">
+                {{ session('status') }}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+            </div>
+            </div>
+        </div>
+    </div>
+@endif
 @endpush

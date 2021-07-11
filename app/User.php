@@ -40,4 +40,12 @@ class User extends Authenticatable
     public function profileUser() {
         return $this->hasOne('App\ProfileUser', 'id_user');
     }
+
+    public function transaksi() {
+        return $this->hasMany(Transaksi::class, 'user_id');
+    }
+
+    public function kelas() {
+        return $this->belongsToMany(Kelas::class, 'transaksis');
+    }
 }

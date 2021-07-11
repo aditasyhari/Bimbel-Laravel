@@ -49,6 +49,11 @@
                         </li>
                     </ul>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ url('/siswa/transaksi') }}">
+                        <i class="feather icon-user"></i><span class="menu-title" data-i18n="User">Transaksi</span>
+                    </a>
+                </li>
             </ul>
         </div>
         

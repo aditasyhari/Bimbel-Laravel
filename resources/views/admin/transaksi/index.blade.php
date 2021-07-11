@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 @section('title')
-Transaksi Kelas Terbatas
+Transaksi
 @endsection
 @push('plugin-styles')
 <link rel="stylesheet" type="text/css" href="{{asset('app-assets/vendors/css/file-uploaders/dropzone.min.css')}}">
@@ -9,6 +9,12 @@ Transaksi Kelas Terbatas
 <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/core/colors/palette-gradient.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/plugins/file-uploaders/dropzone.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/pages/data-list-view.css')}}">
+
+<style>
+button.btn.btn-outline-primary {
+    display: none;
+}
+</style>
 @endpush
 @section('content')
 <div class="content-overlay"></div>
@@ -20,7 +26,7 @@ Transaksi Kelas Terbatas
             <div class="action-btns d-none">
                 <div class="btn-dropdown mr-1 mb-1">
                     <div class="btn-group dropdown actions-dropodown">
-                        <button type="button" class="btn btn-white px-1 py-1 dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <!-- <button type="button" class="btn btn-white px-1 py-1 dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Actions
                         </button>
                         <div class="dropdown-menu dropdown-menu-right">
@@ -28,7 +34,8 @@ Transaksi Kelas Terbatas
                             <a class="dropdown-item" href="#"><i class="feather icon-archive"></i>Archive</a>
                             <a class="dropdown-item" href="#"><i class="feather icon-file"></i>Print</a>
                             <a class="dropdown-item" href="#"><i class="feather icon-save"></i>Another Action</a>
-                        </div>
+                        </div> -->
+                        <h5 class="mt-1 mb-1 pl-2 pr-2">Riwayat Transaksi</h5>
                     </div>
                 </div>
             </div>
@@ -38,46 +45,83 @@ Transaksi Kelas Terbatas
                     <thead>
                         <tr>
                             <th></th>
-                            <th>Image</th>
-                            <th>NAME</th>
-                            <th>CATEGORY</th>
-                            <th>POPULARITY</th>
-                            <th>ORDER STATUS</th>
-                            <th>PRICE</th>
-                            <th>ACTION</th>
+                            <th>Bukti Transfer</th>
+                            <th>Nama</th>
+                            <th>Email</th>
+                            <th>Kelas</th>
+                            <th>Kategori</th>
+                            <th>Harga</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
+                    @foreach($transaksi as $t)
                         <tr>
                             <td></td>
-                            <td class="product-img"><img src="{{asset('app-assets/images/elements/apple-watch.png')}}" alt="Img placeholder">
+                            <td class="product-img">
+                                @if($t->bukti == '')
+                                    <h5>Belum<br>Ada</h5>
+                                @else
+                                    <img src="{{asset('app-assets/images/elements/bukti-tf/'.$t->bukti)}}" alt="Bukti Transfer">
+                                @endif
                             </td>
-                            <td class="product-name">Subono</td>
-                            <td class="product-category">Subono@example.com</td>
+                            <?php
+                                $u = \App\User::find($t->user_id);
+                                $k = \App\Kelas::find($t->kelas_id);
+                            ?>
+                            <td class="product-name">{{ $u->profileUser->nama }}</td>
+                            <td class="product-category">{{ $u->email }}</td>
+                            <td>{{ $k->kategori }}</td>
                             <td>
-                                SD
-                            </td>
-                            <td>
-                                <div class="chip chip-primary">
+                                <?php
+                                    if($k->kategori_kelas == 'terbatas') {
+                                        $chip = 'chip-warning';
+                                    } else {
+                                        $chip = 'chip-primary';
+                                    }
+                                ?>
+                                
+                                <div class="chip {{ $chip }}">
                                     <div class="chip-body">
-                                        <div class="chip-text">Terbatas</div>
+                                        <div class="chip-text text-capitalize">{{ $k->kategori_kelas }}</div>
                                     </div>
                                 </div>
                             </td>
-                            <td class="product-price">$69.99</td>
+                            <td class="product-price">Rp {{ number_format($k->harga, 0, ",",".") }}</td>
                             <td>
-                                <a class="avatar bg-success" title="verifikasi">
-                                    <div href="#" class="avatar-content">
-                                            <i class="avatar-icon text-white feather icon-check-circle"></i>
-                                    </div>
-                                </a>
-                                <a class="avatar bg-danger" title="tolak">
-                                    <div href="#" class="avatar-content">
-                                            <i class="avatar-icon text-white feather icon-x-circle"></i>
-                                    </div>
-                                </a>
+                                @if($t->status_bayar != 'pending')
+                                    @if($t->status_bayar == 'lunas')
+                                        <div class="text-success">Sudah Bayar</div>
+                                    @elseif($t->status_bayar == 'ditolak')
+                                        <div class="text-danger">Ditolak</div>
+                                    @else
+                                        <div class="">Belum Bayar</div>
+                                    @endif
+                                @else
+                                    <form id="form-ver{{$t->id}}" action="{{ url('/admin/transaksi') }}" method="POST">
+                                        @csrf
+                                        <input type="hidden" value="{{ $t->id }}" name="id">
+                                        <input type="hidden" value="lunas" name="status_bayar">
+                                        <div class="avatar bg-success" title="verifikasi" onclick="$('#form-ver{{$t->id}}').submit()">
+                                            <div href="#" class="avatar-content">
+                                                <i class="avatar-icon text-white feather icon-check-circle"></i>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <form id="form-del{{$t->id}}" action="{{ url('/admin/transaksi') }}" method="POST">
+                                        @csrf
+                                        <input type="hidden" value="{{ $t->id }}" name="id">
+                                        <input type="hidden" value="ditolak" name="status_bayar">
+                                        <div class="avatar bg-danger" title="tolak" onclick="$('#form-del{{$t->id}}').submit()">
+                                            <div href="#" class="avatar-content">
+                                                <i class="avatar-icon text-white feather icon-x-circle"></i>
+                                            </div>
+                                        </div>
+                                    </form>
+                                @endif
                             </td>
                         </tr>
+                    @endforeach
                     </tbody>
                 </table>
             </div>

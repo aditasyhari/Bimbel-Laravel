@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <title>Keranjang</title>
+    <title>Berhasil Checkout</title>
 
             <link rel="shortcut icon" type="image/x-icon" href="{{ url('img/logo.png') }}">
     
@@ -44,75 +44,23 @@
                     
                         <div class="card card-primary">
      <div class="card-header">
-        <h4>Checkout</h4>
+        <h4>Berhasil Checkout</h4>
          <div class="card-header-action">
 
-             <!-- <div class="dropdown">
-                 <a href="#" data-toggle="dropdown" class="btn btn-warning dropdown-toggle">Select Currency</a>
-                 <div class="dropdown-menu">
-                    <a href="http://traineasyv3.intermaticsng.com/cart/change-currency/1" class="dropdown-item has-icon">$ - United States Dollar</a>
-                 </div>
-             </div> -->
          </div>
     </div>
     <div class="card-body">
-                    <div class="table-responsive">
-        <table class="table table-hover mb-3">
-            <thead>
-            <tr>
-                <th>Item</th>
-                <th class="text-center">Total</th>
-                <th> </th>
-            </tr>
-            </thead>
-            <tbody>
-                <?php
-                    $total = 0;
-                ?>
-                <form id="cart-form" action="{{ route('keranjang.store') }}" method="POST">
-                @csrf
-                @foreach($kelas as $k)
-                <tr>
-                    <input type="hidden" value="{{ $k->id }}" name="kelas[]">
-                    <td class="col-sm-8 col-md-6 pt-2" >
-                        <div class="media">
+        <div class="table-responsive">
 
-                            <a class="thumbnail float-left">
-                                <img class="media-object" src="{{ asset('app-assets/images/thumbnail/kelas/'.$k->thumbnail) }}" style="width: 72px; height: 72px;"> 
-                            </a>
-
-                            <div class="media-body pl-3">
-                                <h5 class="media-heading">{{ $k->nama_kelas }}</h5>
-
-                                <span></span><span class="text-success"><strong>{{ $k->kategori }}</strong></span>
-                            </div>
-                        </div>
-                    </td>
-
-                    <td class="col-sm-1 col-md-1 text-center pt-2"  ><strong>Rp {{ number_format($k->harga, 0, ",",".") }}</strong></td>
-                    <td class="col-sm-1 col-md-1 pt-2"  >
-
-                        <a class="btn btn-danger" href="#"><i class="fa fa-trash"></i> Hapus</a>
-
-                    </td>
-                    <?php
-                        $total+=$k->harga;
-                    ?>
-                </tr>
-                @endforeach
-                </form>
-            
-            </tbody>
-        </table>
-    </div>
+        </div>
 
         <div class="row">
             <div class="col-md-3">
                 <div class="card card-primary">
                     <div class="card-header">Metode Pembayaran</div>
                     <div class="card-body">
-                        <form method="post" class="form" action="http://traineasyv3.intermaticsng.com/cart">
-                            <input type="hidden" name="_token" value="5Z1Olm2BfzSIE0s72rYuql7w5lay0NGmeNDNRO22">                            <div class="form-group">
+                        <form method="post" class="form" action="">
+                            <div class="form-group">
                                 <label for="code">Transfer ke No Rekening A/N Menthik Handoko :</label>
                                 <input required="required" class="form-control" type="text" name="code" placeholder="361 855 401 11 4" disabled/>
                             </div>
@@ -124,24 +72,14 @@
             </div>
 
                 <div class="col-md-4 ">
-                    <table class="table table-hover">
-                                                <tr>
-
-                            <td><h3>Total</h3></td>
-                            <td class="text-right"><h3><strong>{{ number_format($total, 0, ",",".") }}</strong></h3></td>
-                        </tr>
-                    </table>
+ 
                     <div class="row">
-                        <div class="col-md-6"  >
-                            <a class="btn btn-link btn-block" href="">
-                                <i class="fa fa-cart-plus"></i> Masukkan keranjang
+                        <div class="col"></div>
+                        <div class="col d-flex flex-column aligns-item-center justify-content-center">
+                            <img src="{{ asset('app-assets/images/banner/mail_sent.svg') }}" alt="" class="img-fluid">
+                            <a href="{{ url('/siswa/transaksi') }}" class="btn btn-primary btn-block">
+                                <i class="fa fa-money-bill"></i>  Upload Bukti Pembayaran
                             </a>
-
-                        </div>
-                        <div class="col-md-6"    >
-                            <button type="button" onclick="$('#cart-form').submit()" class="btn btn-success btn-block">
-                                <i class="fa fa-money-bill"></i>  Checkout
-                            </button>
                         </div>
                     </div>
                 </div>

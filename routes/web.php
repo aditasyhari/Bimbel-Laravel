@@ -13,25 +13,21 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Auth::routes();
 
 // frontend
 Route::get('/', function () {
     return view('frontend.dashboard.index');
 });
-Route::get('/kelas', function () {
-    return view('frontend.kelas.index');
-});
-Route::get('/detail-terbatas', function () {
-    return view('frontend.detail.terbatas');
-});
-Route::get('/detail-regular', function () {
-    return view('frontend.detail.regular');
+
+Route::get('/keranjang/checkout/sukses', function () {
+    return view('sukses');
 });
 
-Route::middleware(['auth'])
-->group(function() {
+Route::resource('/kelas', 'Frontend\KelasController');
+Route::resource('/keranjang', 'Frontend\KeranjangController');
 
+Auth::routes();
+Route::middleware(['auth'])->group(function() {
 
     Route::group(['prefix' => 'admin', 'middleware' => 'admin', 'name' => 'admin'], function () {
         Route::get('/', function () {
@@ -40,7 +36,6 @@ Route::middleware(['auth'])
 
         Route::resource('kelas', 'KelasController');
 
-        
         Route::get('/profil', function () {
             return view('admin.profil');
         });
@@ -126,12 +121,8 @@ Route::middleware(['auth'])
             });
 
         // Transaksi
-        Route::get('/transaksi-kelas-terbatas', function () {
-            return view('admin.transaksi.terbatas.index');
-        });
-        Route::get('/transaksi-kelas-regular', function () {
-            return view('admin.transaksi.regular.index');
-        });
+        Route::resource('transaksi', 'TransaksiController');
+
         // Jadwal
         Route::get('/jadwal-kelas-terbatas', function () {
             return view('admin.jadwal.terbatas.index');
@@ -152,6 +143,7 @@ Route::middleware(['auth'])
             return view('pengguna.dashboard');
         });
 
+        Route::resource('transaksi', 'Siswa\TransaksiController');
         Route::resource('profile', 'ProfileUserController');
         Route::put('/profile/pic/update/{id}', 'ProfileUserController@updateProfile');
     });
@@ -190,16 +182,12 @@ Route::get('/home', function () {
     return view('home');
 });
 
+// Route::get('/keranjang', function () {
+//     return view('keranjang');
+// });
 
-
-
-
-Route::get('/keranjang', function () {
-    return view('keranjang');
-});
-
-Route::get('/listkeranjang', function () {
-    return view('listkeranjang');
-});
+// Route::get('/listkeranjang', function () {
+//     return view('listkeranjang');
+// });
 
 // Route::get('/home', 'HomeController@index')->name('home');
