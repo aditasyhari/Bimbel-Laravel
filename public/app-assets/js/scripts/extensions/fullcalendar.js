@@ -9,6 +9,8 @@
 
 document.addEventListener('DOMContentLoaded', function () {
 
+  var site_url = "/admin/jadwal-kelas-terbatas"
+
   // color object for different event types
   var colors = {
     primary: "#7367f0",
@@ -29,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
     eventColor = "";
 
   // calendar init
-  var calendarEl = document.getElementById('fc-default');
+  var calendarEl = document.getElementById('calendar');
 
   var calendar = new FullCalendar.Calendar(calendarEl, {
     plugins: ["dayGrid", "timeGrid", "interaction"],
@@ -53,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function () {
     },
     header: {
       left: "addNew",
-      center: "dayGridMonth,timeGridWeek,timeGridDay",
+      center: "dayGridMonth",
       right: "prev,title,next"
     },
     displayEventTime: false,

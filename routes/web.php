@@ -35,10 +35,26 @@ Route::middleware(['auth'])->group(function() {
         });
 
         Route::resource('kelas', 'KelasController');
+        Route::resource('jadwal-kelas-terbatas', 'JadwalTerbatasController');
+        Route::resource('jadwal-kelas-regular', 'JadwalRegularController');
+
+        Route::get('/jadwal-kelas-terbatas', 'JadwalTerbatasController@index');
+        Route::post('/jadwal-kelas-terbatas/jadwal', 'JadwalTerbatasController@jadwal');
+
+        Route::get('/jadwal-kelas-regular', 'JadwalRegularController@index');
+        Route::post('/jadwal-kelas-regular/jadwal', 'JadwalRegularController@jadwal');
 
         Route::get('/profil', function () {
             return view('admin.profil');
         });
+
+        // Jadwal
+        // Route::get('/jadwal-kelas-terbatas', function () {
+        //     return view('admin.jadwal.terbatas.index');
+        // });
+        // Route::get('/jadwal-kelas-regular', function () {
+        //     return view('admin.jadwal.regular.index');
+        // });
 
 
         // list siswa regular
@@ -123,13 +139,7 @@ Route::middleware(['auth'])->group(function() {
         // Transaksi
         Route::resource('transaksi', 'TransaksiController');
 
-        // Jadwal
-        Route::get('/jadwal-kelas-terbatas', function () {
-            return view('admin.jadwal.terbatas.index');
-        });
-        Route::get('/jadwal-kelas-regular', function () {
-            return view('admin.jadwal.regular.index');
-        });
+        
 
         // settings
         Route::get('/settings-carousel', function () {

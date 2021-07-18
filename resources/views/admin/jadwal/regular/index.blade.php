@@ -4,8 +4,9 @@ Jadwal Kelas Regular
 @endsection
 @push('plugin-styles')
 <!-- BEGIN: Vendor CSS-->
-{{-- <link rel="stylesheet" type="text/css" href="{{asset('app-assets/vendors/css/vendors.min.css')}}"> --}}
-<link rel="stylesheet" type="text/css" href="{{asset('app-assets/vendors/css/calendars/fullcalendar.min.css')}}">
+<!-- <link rel="stylesheet" type="text/css" href="{{asset('app-assets/vendors/css/vendors.min.css')}}"> -->
+<!-- <link rel="stylesheet" type="text/css" href="{{asset('app-assets/vendors/css/calendars/fullcalendar.min.css')}}"> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.css" />
 <link rel="stylesheet" type="text/css" href="{{asset('app-assets/vendors/css/calendars/extensions/daygrid.min.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('app-assets/vendors/css/calendars/extensions/timegrid.min.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('app-assets/vendors/css/pickers/pickadate/pickadate.css')}}">
@@ -14,8 +15,16 @@ Jadwal Kelas Regular
 <!-- BEGIN: Page CSS-->
 <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/core/menu/menu-types/vertical-menu.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/core/colors/palette-gradient.css')}}">
-<link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/plugins/calendars/fullcalendar.css')}}">
+<!-- <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/plugins/calendars/fullcalendar.css')}}"> -->
 <!-- END: Page CSS-->
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+
+<style>
+    span.fc-title {
+        color: white;
+    }
+</style>
 @endpush
 @section('content')
 <div class="content-overlay"></div>
@@ -31,27 +40,9 @@ Jadwal Kelas Regular
                     <div class="card">
                         <div class="card-content">
                             <div class="card-body">
-                                <div class="cal-category-bullets d-none">
-                                    <div class="bullets-group-1 mt-2">
-                                        <div class="category-business mr-1">
-                                            <span class="bullet bullet-success bullet-sm mr-25"></span>
-                                            Business
-                                        </div>
-                                        <div class="category-work mr-1">
-                                            <span class="bullet bullet-warning bullet-sm mr-25"></span>
-                                            Work
-                                        </div>
-                                        <div class="category-personal mr-1">
-                                            <span class="bullet bullet-danger bullet-sm mr-25"></span>
-                                            Personal
-                                        </div>
-                                        <div class="category-others">
-                                            <span class="bullet bullet-primary bullet-sm mr-25"></span>
-                                            Others
-                                        </div>
-                                    </div>
-                                </div>
-                                <div id='fc-default'></div>
+                                
+                                <!-- <div id='fc-default'></div> -->
+                                <div id='calendar'></div>
                             </div>
                         </div>
                     </div>
@@ -69,38 +60,16 @@ Jadwal Kelas Regular
                                 <span aria-hidden="true">×</span>
                             </button>
                         </div>
-                        <form action="#">
+                        <form id="form-add">
+                            
                             <div class="modal-body">
                                 <div class="d-flex justify-content-between align-items-center add-category">
                                     <div class="chip-wrapper"></div>
-                                    <div class="label-icon pt-1 pb-2 dropdown calendar-dropdown">
-                                        <i class="feather icon-tag dropdown-toggle" id="cal-event-category"
-                                            data-toggle="dropdown"></i>
-                                        <div class="dropdown-menu dropdown-menu-right"
-                                            aria-labelledby="cal-event-category">
-                                            <span class="dropdown-item business" data-color="success">
-                                                <span class="bullet bullet-success bullet-sm mr-25"></span>
-                                                Business
-                                            </span>
-                                            <span class="dropdown-item work" data-color="warning">
-                                                <span class="bullet bullet-warning bullet-sm mr-25"></span>
-                                                Work
-                                            </span>
-                                            <span class="dropdown-item personal" data-color="danger">
-                                                <span class="bullet bullet-danger bullet-sm mr-25"></span>
-                                                Personal
-                                            </span>
-                                            <span class="dropdown-item others" data-color="primary">
-                                                <span class="bullet bullet-primary bullet-sm mr-25"></span>
-                                                Others
-                                            </span>
-                                        </div>
-                                    </div>
                                 </div>
                                 <fieldset class="form-label-group">
                                     <input type="text" class="form-control" id="cal-event-title"
-                                        placeholder="Event Title">
-                                    <label for="cal-event-title">Event Title</label>
+                                        placeholder="Event Title" name="title" required>
+                                    <label for="cal-event-title">Jadwal Title</label>
                                 </fieldset>
                                 <fieldset class="form-label-group">
                                     <input type="text" class="form-control pickadate" id="cal-start-date"
@@ -114,23 +83,21 @@ Jadwal Kelas Regular
                                 </fieldset>
                                 <fieldset class="form-label-group">
                                     <textarea class="form-control" id="cal-description" rows="5"
-                                        placeholder="Description"></textarea>
+                                        placeholder="Description" name="desc" required></textarea>
                                     <label for="cal-description">Description</label>
                                 </fieldset>
                             </div>
                             <div class="modal-footer">
-                                <button type="button"
-                                    class="btn btn-primary cal-add-event waves-effect waves-light" disabled>
-                                    Add Event</button>
-                                <button type="button"
+                                <button class="btn btn-primary cal-add-event waves-effect waves-light" id="btn-add">Add</button>
+                                <!-- <button type="button"
                                     class="btn btn-primary d-none cal-submit-event waves-effect waves-light"
-                                    disabled>submit</button>
+                                    disabled>submit</button> -->
                                 <button type="button"
                                     class="btn btn-flat-danger cancel-event waves-effect waves-light"
                                     data-dismiss="modal">Cancel</button>
-                                <button type="button"
+                                <!-- <button type="button"
                                     class="btn btn-flat-danger remove-event d-none waves-effect waves-light"
-                                    data-dismiss="modal">Remove</button>
+                                    data-dismiss="modal">Remove</button> -->
                             </div>
                         </form>
                     </div>
@@ -147,14 +114,167 @@ Jadwal Kelas Regular
 
 <!-- BEGIN: Page Vendor JS-->
 <script src="{{asset('app-assets/vendors/js/extensions/moment.min.js')}}"></script>
-<script src="{{asset('app-assets/vendors/js/calendar/fullcalendar.min.js')}}"></script>
-<script src="{{asset('app-assets/vendors/js/calendar/extensions/daygrid.min.js')}}"></script>
+<!-- <script src="{{asset('app-assets/vendors/js/calendar/fullcalendar.min.js')}}"></script> -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
+<!-- <script src="{{asset('app-assets/fullcalendar/lib/main.min.js')}}"></script> -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/bootstrap/main.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<!-- <script src="{{asset('app-assets/vendors/js/calendar/extensions/daygrid.min.js')}}"></script>
 <script src="{{asset('app-assets/vendors/js/calendar/extensions/timegrid.min.js')}}"></script>
-<script src="{{asset('app-assets/vendors/js/calendar/extensions/interactions.min.js')}}"></script>
+<script src="{{asset('app-assets/vendors/js/calendar/extensions/interactions.min.js')}}"></script> -->
 <script src="{{asset('app-assets/vendors/js/pickers/pickadate/picker.js')}}"></script>
 <script src="{{asset('app-assets/vendors/js/pickers/pickadate/picker.date.js')}}"></script>
 <!-- END: Page Vendor JS-->
 <!-- BEGIN: Page JS-->
-<script src="{{asset('app-assets/js/scripts/extensions/fullcalendar.js')}}"></script>
+<!-- <script src="{{asset('app-assets/js/scripts/extensions/fullcalendar.js')}}"></script> -->
 <!-- END: Page JS-->
+
+<script>
+
+var site_url = "/admin/jadwal-kelas-regular"
+
+document.addEventListener('DOMContentLoaded', function () {
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    var calendar = $('#calendar').fullCalendar({
+        editable: true,
+        events: site_url,
+        displayEventTime: false,
+        editable: true,
+        eventRender: function(event, element, view) {
+            if (event.allDay === 'true') {
+                event.allDay = true;
+            } else {
+                event.allDay = false;
+            }
+        },
+        selectable: true,
+        selectHelper: true,
+        select: function(start, end, allDay) {
+
+            var title = prompt('Jadwal Title:');
+            if(title != null) {
+                var desc = prompt('Desc:');
+            }
+            // $(".modal-calendar").modal("show");
+            if(title) {
+                // var title = document.getElementById('cal-event-title').value;
+                // var desc = document.getElementById('cal-description').value;
+                var start = $.fullCalendar.formatDate(start, "Y-MM-DD");
+                var end = $.fullCalendar.formatDate(end, "Y-MM-DD");
+                $.ajax({
+                    url: site_url + "/jadwal",
+                    data: {
+                        title: title,
+                        start: start,
+                        end: end,
+                        desc: desc,
+                        type: 'add'
+                    },
+                    type: "POST",
+                    success: function(data) {
+                        displayMessage("Jadwal berhasil ditambahkan !");
+
+                        calendar.fullCalendar('renderEvent', {
+                            id: data.id,
+                            title: title,
+                            start: start,
+                            end: end,
+                            allDay: allDay
+                        }, true);
+
+                        calendar.fullCalendar('unselect');
+                        $('.modal-calendar').modal('hide');
+                    }
+                });
+            }
+        },
+
+        eventDrop: function(event, delta) {
+            var start = $.fullCalendar.formatDate(event.start, "Y-MM-DD");
+            var end = $.fullCalendar.formatDate(event.end, "Y-MM-DD");
+
+            $.ajax({
+                url: site_url + '/jadwal',
+                data: {
+                    title: event.title,
+                    start: start,
+                    end: end,
+                    id: event.id,
+                    type: 'update'
+                },
+                type: "POST",
+                success: function(response) {
+
+                    displayMessage("Jadwal berhasil diupdate !");
+                }
+            });
+        },
+
+        eventClick: function(event) {
+            var deleteMsg = confirm("Yakin menghapus jadwal?");
+            if (deleteMsg) {
+                $.ajax({
+                    type: "POST",
+                    url: site_url + '/jadwal',
+                    data: {
+                        id: event.id,
+                        type: 'delete'
+                    },
+                    success: function(response) {
+
+                        calendar.fullCalendar('removeEvents', event.id);
+                        displayMessage("Event Deleted Successfully");
+                    }
+                });
+            }
+        }
+
+    });
+
+});
+
+// $("#btn-add").click(function(){
+//     console.log(1)
+//     var title = document.getElementById('cal-event-title').value;
+//     var desc = document.getElementById('cal-description').value;
+//     var start = $.fullCalendar.formatDate(start, "Y-MM-DD");
+//     var end = $.fullCalendar.formatDate(end, "Y-MM-DD");
+//     $.ajax({
+//         url: site_url + "/jadwal",
+//         data: {
+//             title: title,
+//             start: start,
+//             end: end,
+//             desc: desc,
+//             type: 'add'
+//         },
+//         type: "POST",
+//         success: function(data) {
+//             displayMessage("Jadwal berhasil ditambahkan !");
+
+//             calendar.fullCalendar('renderEvent', {
+//                 id: data.id,
+//                 title: title,
+//                 start: start,
+//                 end: end,
+//                 allDay: allDay
+//             }, true);
+
+//             calendar.fullCalendar('unselect');
+//             $('.modal-calendar').modal('hide');
+//         }
+//     });
+// });
+
+function displayMessage(message) {
+    toastr.success(message, 'Event');
+}
+
+</script>
 @endpush
