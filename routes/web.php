@@ -80,6 +80,7 @@ Route::middleware(['auth'])->group(function() {
         Route::get('/siswa-terbatas-sd', function () {
             return view('admin.siswa.kelas_terbatas.sd.index');
         });
+
         Route::get('/siswa-terbatas-smp', function () {
             return view('admin.siswa.kelas_terbatas.smp.index');
         });
@@ -95,6 +96,15 @@ Route::middleware(['auth'])->group(function() {
         Route::get('/siswa-terbatas-kedinasan', function () {
             return view('admin.siswa.kelas_terbatas.kedinasan.index');
         });
+
+        // Create dan Update
+        Route::get('/siswa-terbatas-sd/create', function () {
+            return view('admin.siswa.kelas_terbatas.sd.create');
+        });
+        Route::get('/siswa-terbatas-sd/edit', function () {
+            return view('admin.siswa.kelas_terbatas.sd.edit');
+        });
+
 
         // absensi regular
         Route::get('/absen-siswa-regular-sd', function () {
@@ -152,6 +162,16 @@ Route::middleware(['auth'])->group(function() {
         Route::resource('transaksi', 'Siswa\TransaksiController');
         Route::resource('profile', 'ProfileUserController');
         Route::put('/profile/pic/update/{id}', 'ProfileUserController@updateProfile');
+
+        Route::get('/kelas-siswa', function () {
+            return view('pengguna.kelas');
+        });
+        Route::get('/absen-siswa', function () {
+            return view('pengguna.absen');
+        });
+        Route::get('/jadwal-siswa', function () {
+            return view('pengguna.jadwal');
+        });
     });
 
     Route::group(['prefix' => 'ortu', 'middleware' => 'ortu', 'name' => 'ortu'], function () {
@@ -160,17 +180,6 @@ Route::middleware(['auth'])->group(function() {
 });
 
 
-Route::get('/user-edit', function () {
-    return view('user-edit');
-});
-
-Route::get('/user-view', function () {
-    return view('user-view');
-});
-
-Route::get('/user-list', function () {
-    return view('user-list');
-});
 
 Route::get('/dashboard-analytics', function () {
     return view('dashboard-analytics');

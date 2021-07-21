@@ -11,44 +11,26 @@
         <div class="shadow-bottom"></div>
         <div class="main-menu-content">
             <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-                <li class=" nav-item active"><a href="{{url('dashboard')}}"><i class="feather icon-home"></i><span class="menu-title" data-i18n="Dashboard">Dashboard</span></a>
+                <li class=" nav-item active"><a href="{{url('siswa')}}"><i class="feather icon-home"></i><span class="menu-title" data-i18n="Dashboard">Dashboard</span></a>
                 </li>
                 <li class=" navigation-header"><span>Apps</span>
                 </li>
                 <li class="nav-item">
-                    <a href="#">
+                    <a href="{{url('siswa/kelas-siswa')}}">
                         <i class="feather icon-user"></i><span class="menu-title" data-i18n="User">Kelas</span>
                     </a>
                 </li>
-                <li class=" nav-item"><a href="#"><i class="feather icon-check-square"></i><span class="menu-title" data-i18n="User">Absen</span></a>
-                    <ul class="menu-content">
-                        <li><a href="{{ url('/user-list') }}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="List">List</span></a>
-                        </li>
-                        <li><a href="{{ url('/user-view') }}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="View">View</span></a>
-                        </li>
-                        <li><a href="{{ url('/user-edit') }}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Edit">Edit</span></a>
-                        </li>
-                    </ul>
+                <li class="nav-item">
+                    <a href="{{url('siswa/absen-siswa')}}">
+                        <i class="feather icon-check-square"></i><span class="menu-title" data-i18n="Absen">Absen</span>
+                    </a>
                 </li>
-
-                <li class=" nav-item"><a href="#"><i class="feather icon-file-text"></i><span class="menu-title" data-i18n="Miscellaneous">Jadwal</span></a>
-                    <ul class="menu-content">
-                        <li><a href="page-coming-soon.html"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Coming Soon">Coming Soon</span></a>
-                        </li>
-                        <li><a href="#"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Error">Error</span></a>
-                            <ul class="menu-content">
-                                <li><a href="error-404.html"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="404">404</span></a>
-                                </li>
-                                <li><a href="error-500.html"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="500">500</span></a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li><a href="page-not-authorized.html"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Not Authorized">Not Authorized</span></a>
-                        </li>
-                        <li><a href="page-maintenance.html"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Maintenance">Maintenance</span></a>
-                        </li>
-                    </ul>
+                <li class="nav-item">
+                    <a href="#">
+                        <i class="feather icon-file-text"></i><span class="menu-title" data-i18n="Absen">Jadwal</span>
+                    </a>
                 </li>
+                
                 <li class="nav-item">
                     <a href="{{ url('/siswa/transaksi') }}">
                         <i class="feather icon-user"></i><span class="menu-title" data-i18n="User">Transaksi</span>

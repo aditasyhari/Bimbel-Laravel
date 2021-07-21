@@ -39,7 +39,34 @@ Dashboard Siswa
 
         </section>
         <!-- Dashboard Analytics end -->
+        <section class="app-ecommerce-details">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row mb-5 mt-2">
+                        <div class="col-12 col-md-5 d-flex align-items-center justify-content-center mb-2 mb-md-0">
+                            <div class="d-flex align-items-center justify-content-center">
+                                <img src="{{asset('img/logo-sma.png')}}" class="img-fluid" alt="product image">
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <h5>Kelas SMA - IPA
+                            </h5>
+                            <p class="text-muted">Regular</p>
+                            <div class="ecommerce-details-price d-flex flex-wrap">
 
+                                <p class="text-primary font-medium-3 mr-1 mb-0">Rp. 800.000</p>
+                                
+                            </div>
+                            <hr>
+                            <p>Keterangan iki bos photos and videos with this Canon EOS 5D Mk V 24-70mm lens kit. A huge 30.4-megapixel
+                                full-frame sensor delivers outstanding image clarity, and 4K video is possible from this DSLR for powerful
+                                films. Ultra-precise autofocus and huge ISO ranges give you the images you want from this Canon EOS 5D Mk V
+                                24-70mm lens kit.</p>
+                          </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 </div>
 

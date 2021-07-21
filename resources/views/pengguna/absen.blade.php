@@ -1,6 +1,6 @@
-@extends('admin.layouts.master')
+@extends('pengguna.layouts.master')
 @section('title')
-    List Siswa SD
+    Absen Siswa
 @endsection
 @push('plugin-styles')
 <link rel="stylesheet" type="text/css" href="{{asset('/app-assets/vendors/css/vendors.min.css')}}">
@@ -18,8 +18,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">List Siswa SD / MI</h4>
-                            <a href="{{url('admin/siswa-terbatas-sd/create')}}" class="btn btn-icon btn-outline-primary float-right mr-1 mb-1" title="tambah siswa"><i class="feather icon-user-plus"></i></a>
+                            <h4 class="card-title">Tabel Absen</h4>
                         </div>
                         <div class="card-content">
                             <div class="card-body card-dashboard">
@@ -28,21 +27,24 @@
                                         <thead class="text-center">
                                             <tr>
                                                 <th>Nama</th>
-                                                <th>Email</th>
                                                 <th>Kelas</th>
-                                                <th>Tanggal Daftar</th>
-                                                <th>Aksi</th>
+                                                <th>Paket</th>
+                                                <th>Tanggal</th>
+                                                <th>Status</th>
                                             </tr>
                                         </thead>
                                         <tbody class="text-center">
                                             <tr>
-                                                <td>Tiger Nixon</td>
-                                                <td>System Architect</td>
-                                                <td>Edinburgh</td>
-                                                <td>61</td>
+                                                <td>Wita Ananta</td>
+                                                <td>SMA</td>
+                                                <td>Regular</td>
+                                                <td>1 Juli 2021</td>
                                                 <td>
-                                                    <a href="{{url('admin/siswa-terbatas-sd/edit')}}" class="btn btn-primary mr-1 mb-1">Edit</a>
-                                                    <a href="#" class="btn btn-danger mr-1 mb-1">Hapus</a>
+                                                    <div class="chip chip-success">
+                                                        <div class="chip-body">
+                                                            <span class="chip-text">Hadir</span>
+                                                        </div>
+                                                    </div>
                                                 </td>
                                             </tr>
                                         </tbody>

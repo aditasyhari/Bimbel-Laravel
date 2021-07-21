@@ -36,7 +36,7 @@
     <div class="drag-target"></div>
 
     <!-- BEGIN: Footer-->
-    @include('pengguna.layouts.footer')
+    {{-- @include('pengguna.layouts.footer') --}}
     <!-- END: Footer-->
 
     @include('pengguna.layouts.script')

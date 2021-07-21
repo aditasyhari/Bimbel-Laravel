@@ -70,23 +70,23 @@ Dashboard Admin
             </div>
 
             <div class="row">
-                <div class="col-lg-3 col-sm-6 col-12">
+                <div class="col-lg-4 col-sm-7 col-12">
                     <div class="card">
                         <div class="card-header d-flex flex-column align-items-start pb-0">
                             <div class="avatar bg-rgba-primary p-50 m-0">
                                 <div class="avatar-content">
-                                    <i class="feather icon-users text-primary font-medium-5"></i>
+                                    <i class="feather icon-check-square text-primary font-medium-5"></i>
                                 </div>
                             </div>
                             <h2 class="text-bold-700 mt-1">92.6k</h2>
-                            <p class="mb-0">Subscribers Gained</p>
+                            <p class="mb-0">Absen</p>
                         </div>
                         <div class="card-content">
                             <div id="line-area-chart-1"></div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-sm-6 col-12">
+                <div class="col-lg-4 col-sm-7 col-12">
                     <div class="card">
                         <div class="card-header d-flex flex-column align-items-start pb-0">
                             <div class="avatar bg-rgba-success p-50 m-0">
@@ -95,42 +95,26 @@ Dashboard Admin
                                 </div>
                             </div>
                             <h2 class="text-bold-700 mt-1">97.5k</h2>
-                            <p class="mb-0">Revenue Generated</p>
+                            <p class="mb-0">Transaksi</p>
                         </div>
                         <div class="card-content">
                             <div id="line-area-chart-2"></div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-sm-6 col-12">
+                <div class="col-lg-4 col-sm-7 col-12">
                     <div class="card">
                         <div class="card-header d-flex flex-column align-items-start pb-0">
                             <div class="avatar bg-rgba-danger p-50 m-0">
                                 <div class="avatar-content">
-                                    <i class="feather icon-shopping-cart text-danger font-medium-5"></i>
+                                    <i class="feather icon-file-text text-danger font-medium-5"></i>
                                 </div>
                             </div>
                             <h2 class="text-bold-700 mt-1">36%</h2>
-                            <p class="mb-0">Quarterly Sales</p>
+                            <p class="mb-0">Jadwal</p>
                         </div>
                         <div class="card-content">
                             <div id="line-area-chart-3"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6 col-12">
-                    <div class="card">
-                        <div class="card-header d-flex flex-column align-items-start pb-0">
-                            <div class="avatar bg-rgba-warning p-50 m-0">
-                                <div class="avatar-content">
-                                    <i class="feather icon-package text-warning font-medium-5"></i>
-                                </div>
-                            </div>
-                            <h2 class="text-bold-700 mt-1">97.5K</h2>
-                            <p class="mb-0">Orders Received</p>
-                        </div>
-                        <div class="card-content">
-                            <div id="line-area-chart-4"></div>
                         </div>
                     </div>
                 </div>
