@@ -77,9 +77,7 @@ Route::middleware(['auth'])->group(function() {
         });
 
         // list siswa terbatas
-        Route::get('/siswa-terbatas-sd', function () {
-            return view('admin.siswa.kelas_terbatas.sd.index');
-        });
+        Route::resource('/siswa', 'ManagemenUser\ManagemenController');
 
         Route::get('/siswa-terbatas-smp', function () {
             return view('admin.siswa.kelas_terbatas.smp.index');

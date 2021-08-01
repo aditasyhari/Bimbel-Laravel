@@ -15,42 +15,8 @@
                 </li>
                 <li class=" navigation-header"><span>Apps</span>
                 </li>
-                <li class="nav-item"><a href="#"><i class="feather icon-user"></i><span class="menu-title" data-i18n="User">Siswa</span></a>
-                    <ul class="menu-content">
-                        <li><a href="#"><i class="feather icon-tag"></i><span class="menu-item" data-i18n="List">Kelas Terbatas</span></a>
-                            <ul class="menu-content">
-                                <li><a href="{{url('admin/siswa-terbatas-sd')}}"><i class="feather icon-circle"></i><span class="menu-item">SD/MI</span></a>
-                                </li>
-                                <li><a href="{{url('admin/siswa-terbatas-smp')}}"><i class="feather icon-circle"></i><span class="menu-item">SMP/MTS</span></a>
-                                </li>
-                                <li><a href="{{url('admin/siswa-terbatas-sma_ipa')}}"><i class="feather icon-circle"></i><span class="menu-item">SMA/MA - IPA</span></a>
-                                </li>
-                                <li><a href="{{url('admin/siswa-terbatas-sma_ips')}}"><i class="feather icon-circle"></i><span class="menu-item">SMA/MA - IPS</span></a>
-                                </li>
-                                <li><a href="{{url('admin/siswa-terbatas-sbmptn')}}"><i class="feather icon-circle"></i><span class="menu-item">SBMPTN</span></a>
-                                </li>
-                                <li><a href="{{url('admin/siswa-terbatas-kedinasan')}}"><i class="feather icon-circle"></i><span class="menu-item">Kedinasan / Ikatan Dinas</span></a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li><a href="#"><i class="feather icon-tag"></i><span class="menu-item" data-i18n="View">Kelas Regular</span></a>
-                            <ul class="menu-content">
-                                <li><a href="{{url('admin/siswa-regular-sd')}}"><i class="feather icon-circle"></i><span class="menu-item">SD/MI</span></a>
-                                </li>
-                                <li><a href="{{url('admin/siswa-regular-smp')}}"><i class="feather icon-circle"></i><span class="menu-item">SMP/MTS</span></a>
-                                </li>
-                                <li><a href="{{url('admin/siswa-regular-sma_ipa')}}"><i class="feather icon-circle"></i><span class="menu-item">SMA/MA - IPA</span></a>
-                                </li>
-                                <li><a href="{{url('admin/siswa-regular-sma_ips')}}"><i class="feather icon-circle"></i><span class="menu-item">SMA/MA - IPS</span></a>
-                                </li>
-                                <li><a href="{{url('admin/siswa-regular-sbmptn')}}"><i class="feather icon-circle"></i><span class="menu-item">SBMPTN</span></a>
-                                </li>
-                                <li><a href="{{url('admin/siswa-regular-kedinasan')}}"><i class="feather icon-circle"></i><span class="menu-item">Kedinasan / Ikatan Dinas</span></a>
-                                </li>
-                            </ul>
-                        </li>
-
-                    </ul>
+                <li class=" nav-item">
+                    <a href="{{route('siswa.index')}}"><i class="feather icon-user"></i><span class="menu-title" data-i18n="Siswa">Siswa</span></a>
                 </li>
                 <li class=" nav-item"><a href="#"><i class="feather icon-check-square"></i><span class="menu-title" data-i18n="User">Absen</span></a>
                     <ul class="menu-content">

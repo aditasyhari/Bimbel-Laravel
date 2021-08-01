@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 @section('title')
-    List Siswa SBMPTN
+List Siswa
 @endsection
 @push('plugin-styles')
 <link rel="stylesheet" type="text/css" href="{{asset('/app-assets/vendors/css/vendors.min.css')}}">
@@ -18,8 +18,10 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">List Siswa SBMPTN</h4>
-                            <a href="#" class="btn btn-icon btn-outline-primary float-right mr-1 mb-1" title="tambah siswa"><i class="feather icon-user-plus"></i></a>
+                            <h4 class="card-title">List Siswa</h4>
+                            <a href="{{route('siswa.create')}}"
+                                class="btn btn-icon btn-outline-primary float-right mr-1 mb-1" title="tambah siswa"><i
+                                    class="feather icon-user-plus"></i></a>
                         </div>
                         <div class="card-content">
                             <div class="card-body card-dashboard">
@@ -29,22 +31,36 @@
                                             <tr>
                                                 <th>Nama</th>
                                                 <th>Email</th>
-                                                <th>Kelas</th>
-                                                <th>Tanggal Daftar</th>
+                                                <th>Foto</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody class="text-center">
+                                            @foreach ($user as $item)
                                             <tr>
-                                                <td>Tiger Nixon</td>
-                                                <td>System Architect</td>
-                                                <td>Edinburgh</td>
-                                                <td>61</td>
+                                                <td>{{ $item->profileUser->nama }}</td>
+                                                <td>{{ $item->email }}</td>
                                                 <td>
-                                                    <a href="#" class="btn btn-primary mr-1 mb-1">Edit</a>
-                                                    <a href="#" class="btn btn-danger mr-1 mb-1">Hapus</a>
+                                                    <div class="avatar mr-1 avatar-lg">
+                                                        <img src="{{'/app-assets/images/portrait/small/'.$item->profileUser->foto}}"
+                                                            alt="avtar img holder">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <a href="{{route('siswa.edit',$item->id)}}"
+                                                        class="btn btn-icon btn-outline-primary mr-1 mb-1">
+                                                        <i class="feather icon-edit"></i>
+                                                    </a>
+                                                    <form action="{{route('siswa.destroy',$item->id)}}" method="post">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <button class="btn btn-icon btn-outline-danger  mr-1 mb-1">
+                                                            <i class="feather icon-trash"></i>
+                                                        </button>
+                                                    </form>
                                                 </td>
                                             </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>
