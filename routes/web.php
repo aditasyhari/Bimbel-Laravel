@@ -105,43 +105,26 @@ Route::middleware(['auth'])->group(function() {
 
 
         // absensi regular
-        Route::get('/absen-siswa-regular-sd', function () {
-            return view('admin.absen.kelasRegular.sd.index');
-        });
-        Route::get('/absen-siswa-regular-smp', function () {
-            return view('admin.absen.kelasRegular.smp.index');
-        });
-        Route::get('/absen-siswa-regular-sma_ips', function () {
-            return view('admin.absen.kelasRegular.sma_ips.index');
-        });
-        Route::get('/absen-siswa-regular-sma_ipa', function () {
-            return view('admin.absen.kelasRegular.sma_ipa.index');
-        });
-        Route::get('/absen-siswa-regular-sbmptn', function () {
-            return view('admin.absen.kelasRegular.sbmptn.index');
-        });
-        Route::get('/absen-siswa-regular-kedinasan', function () {
-            return view('admin.absen.kelasRegular.kedinasan.index');
-        });
+        Route::get('/absen-siswa-regular-sd', 'AbsensiRegularController@sd_mi');
+        Route::get('/absen-siswa-regular-smp', 'AbsensiRegularController@smp_mts');
+        Route::get('/absen-siswa-regular-sma_ips', 'AbsensiRegularController@sma_ips');
+        Route::get('/absen-siswa-regular-sma_ipa', 'AbsensiRegularController@sma_ipa');
+        Route::get('/absen-siswa-regular-sbmptn', 'AbsensiRegularController@sbmptn');
+        Route::get('/absen-siswa-regular-kedinasan', 'AbsensiRegularController@kedinasan');
+        Route::resource('absen-siswa-regular', 'AbsensiRegularController');
+        Route::get('absen-siswa-regular/tambah-siswa/{absen}', 'AbsensiRegularController@tambah_siswa')->name('TambahSiswaReg');
+        Route::get('absen-siswa-regular/update-absen/{id}/{status}', 'AbsensiRegularController@absen_update')->name('absenUpdateReg');
+
         // absensi terbatas
-            Route::get('/absen-siswa-terbatas-sd', function () {
-                return view('admin.absen.kelasTerbatas.sd.index');
-            });
-            Route::get('/absen-siswa-terbatas-smp', function () {
-                return view('admin.absen.kelasTerbatas.smp.index');
-            });
-            Route::get('/absen-siswa-terbatas-sma_ips', function () {
-                return view('admin.absen.kelasTerbatas.sma_ips.index');
-            });
-            Route::get('/absen-siswa-terbatas-sma_ipa', function () {
-                return view('admin.absen.kelasTerbatas.sma_ipa.index');
-            });
-            Route::get('/absen-siswa-terbatas-sbmptn', function () {
-                return view('admin.absen.kelasTerbatas.sbmptn.index');
-            });
-            Route::get('/absen-siswa-terbatas-kedinasan', function () {
-                return view('admin.absen.kelasTerbatas.kedinasan.index');
-            });
+        Route::get('/absen-siswa-terbatas-sd', 'AbsensiTerbatasController@sd_mi');
+        Route::get('/absen-siswa-terbatas-smp', 'AbsensiTerbatasController@smp_mts');
+        Route::get('/absen-siswa-terbatas-sma_ips', 'AbsensiTerbatasController@sma_ips');
+        Route::get('/absen-siswa-terbatas-sma_ipa', 'AbsensiTerbatasController@sma_ipa');
+        Route::get('/absen-siswa-terbatas-sbmptn', 'AbsensiTerbatasController@sbmptn');
+        Route::get('/absen-siswa-terbatas-kedinasan', 'AbsensiTerbatasController@kedinasan');
+        Route::resource('absen-siswa-terbatas', 'AbsensiTerbatasController');
+        Route::get('absen-siswa-terbatas/tambah-siswa/{absen}', 'AbsensiTerbatasController@tambah_siswa')->name('TambahSiswa');
+        Route::get('absen-siswa-terbatas/update-absen/{id}/{status}', 'AbsensiTerbatasController@absen_update')->name('absenUpdate');
 
         // Transaksi
         Route::resource('transaksi', 'TransaksiController');

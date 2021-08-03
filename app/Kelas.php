@@ -17,4 +17,8 @@ class Kelas extends Model
     public function transaksi() {
         return $this->hasMany(Transaksi::class, 'kelas_id');
     }
+
+    public function absensi() {
+        return $this->hasMany(Absensi::class, 'id_kelas');
+    }
 }

@@ -48,4 +48,8 @@ class User extends Authenticatable
     public function kelas() {
         return $this->belongsToMany(Kelas::class, 'transaksis');
     }
+
+    public function absensi() {
+        return $this->belongsToMany(Absensi::class, 'absensi_users');
+    }
 }
