@@ -40,6 +40,7 @@ Jadwal Kelas Regular
                     <div class="card">
                         <div class="card-content">
                             <div class="card-body">
+                                <h2>Jadwal Kelas Regular</h2><hr>
                                 
                                 <!-- <div id='fc-default'></div> -->
                                 <div id='calendar'></div>

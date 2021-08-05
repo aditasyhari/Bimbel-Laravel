@@ -43,7 +43,7 @@ Dashboard Admin
                                     <i class="feather icon-users text-primary font-medium-5"></i>
                                 </div>
                             </div>
-                            <h2 class="text-bold-700 mt-1 mb-25">92.6k</h2>
+                            <h2 class="text-bold-700 mt-1 mb-25">{{ $user }}</h2>
                             <p class="mb-0">Total Siswa</p>
                         </div>
                         <div class="card-content">
@@ -59,7 +59,7 @@ Dashboard Admin
                                     <i class="feather icon-package text-warning font-medium-5"></i>
                                 </div>
                             </div>
-                            <h2 class="text-bold-700 mt-1 mb-25">97.5K</h2>
+                            <h2 class="text-bold-700 mt-1 mb-25">{{ $kelas }}</h2>
                             <p class="mb-0">Jumlah Kelas</p>
                         </div>
                         <div class="card-content">
@@ -78,7 +78,7 @@ Dashboard Admin
                                     <i class="feather icon-check-square text-primary font-medium-5"></i>
                                 </div>
                             </div>
-                            <h2 class="text-bold-700 mt-1">92.6k</h2>
+                            <h2 class="text-bold-700 mt-1">{{ $absen }}</h2>
                             <p class="mb-0">Absen</p>
                         </div>
                         <div class="card-content">
@@ -94,7 +94,7 @@ Dashboard Admin
                                     <i class="feather icon-credit-card text-success font-medium-5"></i>
                                 </div>
                             </div>
-                            <h2 class="text-bold-700 mt-1">97.5k</h2>
+                            <h2 class="text-bold-700 mt-1">{{ $transaksi }}</h2>
                             <p class="mb-0">Transaksi</p>
                         </div>
                         <div class="card-content">
@@ -110,7 +110,7 @@ Dashboard Admin
                                     <i class="feather icon-file-text text-danger font-medium-5"></i>
                                 </div>
                             </div>
-                            <h2 class="text-bold-700 mt-1">36%</h2>
+                            <h2 class="text-bold-700 mt-1">{{ $jadwal }}</h2>
                             <p class="mb-0">Jadwal</p>
                         </div>
                         <div class="card-content">

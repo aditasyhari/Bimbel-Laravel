@@ -19,7 +19,7 @@ Absen Siswa {{ $kelas->kategori }} - {{ $absen->tanggal }}
                     <div class="card">
                         <div class="card-header">
                             <div>
-                                <h4 class="card-title">Absen Siswa Terbatas | <span class="text-uppercase">{{ $kelas->kategori }}</span></h4>
+                                <h4 class="card-title">Absen Siswa Regular | <span class="text-uppercase">{{ $kelas->kategori }}</span></h4>
                                 <p class="">{{ $absen->tanggal }} - {{ $kelas->nama_kelas }}</p>
                             </div>
                             <a role="button" href="{{ route('TambahSiswaReg', ['absen'=>$absen->id]) }}" class="btn btn-icon btn-outline-primary float-right mr-1 mb-1"

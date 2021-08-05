@@ -62,8 +62,8 @@ button.btn.btn-outline-primary {
                                 @if($t->bukti == '')
                                     <h5>Belum<br>Ada</h5>
                                 @else
-                                    <img src="{{asset('app-assets/images/elements/bukti-tf/'.$t->bukti)}}" alt="Bukti Transfer"><br>
-                                    <a class="ml-2 btn btn-sm btn-primary" href="{{asset('app-assets/images/elements/bukti-tf/'.$t->bukti)}}" target="_blank" rel="noopener noreferrer">Lihat</a>
+                                    <img src="{{asset('app-assets/images/elements/bukti-tf/'.$t->bukti)}}" alt="Bukti Transfer" style="max-width: 120px;"><br>
+                                    <a class="ml-2 mt-1 btn btn-sm btn-primary" href="{{asset('app-assets/images/elements/bukti-tf/'.$t->bukti)}}" target="_blank" rel="noopener noreferrer">Lihat</a>
                                 @endif
                             </td>
                             <?php

@@ -101,7 +101,7 @@ class AbsensiRegularController extends Controller
         // dd($user);
         $kelas = Kelas::find($absen->id_kelas);
 
-        return view('admin.absen.kelasTerbatas.detail-absen', compact(['absen', 'kelas', 'user']));
+        return view('admin.absen.kelasRegular.detail-absen', compact(['absen', 'kelas', 'user']));
     }
 
     /**

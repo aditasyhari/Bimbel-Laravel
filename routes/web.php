@@ -31,9 +31,7 @@ Route::middleware(['auth'])->group(function() {
 
     Route::group(['prefix' => 'admin', 'middleware' => 'admin', 'name' => 'admin'], function () {
         // dashboard
-        Route::get('/', function () {
-            return view('admin.dashboard');
-        });
+        Route::get('/', 'DashboardController@index')->name('AdminDashboard');
 
         // kelas
         Route::resource('kelas', 'KelasController');
@@ -41,19 +39,19 @@ Route::middleware(['auth'])->group(function() {
         // jadwal
         Route::resource('jadwal-kelas-terbatas', 'JadwalTerbatasController');
         Route::resource('jadwal-kelas-regular', 'JadwalRegularController');
-        Route::get('/jadwal-kelas-terbatas', 'JadwalTerbatasController@index');
+        Route::get('/jadwal-kelas-terbatas', 'JadwalTerbatasController@index')->name('JadwalKelasTerbatas');
         Route::post('/jadwal-kelas-terbatas/jadwal', 'JadwalTerbatasController@jadwal');
 
-        Route::get('/jadwal-kelas-regular', 'JadwalRegularController@index');
+        Route::get('/jadwal-kelas-regular', 'JadwalRegularController@index')->name('JadwalKelasRegular');
         Route::post('/jadwal-kelas-regular/jadwal', 'JadwalRegularController@jadwal');
 
         // settings
         Route::resource('settings-carousel', 'CarouselController');
         Route::post('/settings-carousel/update', 'CarouselController@updateCarousel')->name('updateCarousel');
 
-        Route::get('/profil', function () {
-            return view('admin.profil');
-        });
+        // Route::get('/profil', function () {
+        //     return view('admin.profil');
+        // });
 
 
         // list siswa regular
@@ -105,26 +103,26 @@ Route::middleware(['auth'])->group(function() {
 
 
         // absensi regular
-        Route::get('/absen-siswa-regular-sd', 'AbsensiRegularController@sd_mi');
-        Route::get('/absen-siswa-regular-smp', 'AbsensiRegularController@smp_mts');
-        Route::get('/absen-siswa-regular-sma_ips', 'AbsensiRegularController@sma_ips');
-        Route::get('/absen-siswa-regular-sma_ipa', 'AbsensiRegularController@sma_ipa');
-        Route::get('/absen-siswa-regular-sbmptn', 'AbsensiRegularController@sbmptn');
-        Route::get('/absen-siswa-regular-kedinasan', 'AbsensiRegularController@kedinasan');
-        Route::resource('absen-siswa-regular', 'AbsensiRegularController');
-        Route::get('absen-siswa-regular/tambah-siswa/{absen}', 'AbsensiRegularController@tambah_siswa')->name('TambahSiswaReg');
-        Route::get('absen-siswa-regular/update-absen/{id}/{status}', 'AbsensiRegularController@absen_update')->name('absenUpdateReg');
+        Route::get('/regular/absen-siswa-regular-sd', 'AbsensiRegularController@sd_mi');
+        Route::get('/regular/absen-siswa-regular-smp', 'AbsensiRegularController@smp_mts');
+        Route::get('/regular/absen-siswa-regular-sma_ips', 'AbsensiRegularController@sma_ips');
+        Route::get('/regular/absen-siswa-regular-sma_ipa', 'AbsensiRegularController@sma_ipa');
+        Route::get('/regular/absen-siswa-regular-sbmptn', 'AbsensiRegularController@sbmptn');
+        Route::get('/regular/absen-siswa-regular-kedinasan', 'AbsensiRegularController@kedinasan');
+        Route::resource('/regular/absen-siswa-regular', 'AbsensiRegularController');
+        Route::get('/regular/absen-siswa-regular/tambah-siswa/{absen}', 'AbsensiRegularController@tambah_siswa')->name('TambahSiswaReg');
+        Route::get('/regular/absen-siswa-regular/update-absen/{id}/{status}', 'AbsensiRegularController@absen_update')->name('absenUpdateReg');
 
         // absensi terbatas
-        Route::get('/absen-siswa-terbatas-sd', 'AbsensiTerbatasController@sd_mi');
-        Route::get('/absen-siswa-terbatas-smp', 'AbsensiTerbatasController@smp_mts');
-        Route::get('/absen-siswa-terbatas-sma_ips', 'AbsensiTerbatasController@sma_ips');
-        Route::get('/absen-siswa-terbatas-sma_ipa', 'AbsensiTerbatasController@sma_ipa');
-        Route::get('/absen-siswa-terbatas-sbmptn', 'AbsensiTerbatasController@sbmptn');
-        Route::get('/absen-siswa-terbatas-kedinasan', 'AbsensiTerbatasController@kedinasan');
-        Route::resource('absen-siswa-terbatas', 'AbsensiTerbatasController');
-        Route::get('absen-siswa-terbatas/tambah-siswa/{absen}', 'AbsensiTerbatasController@tambah_siswa')->name('TambahSiswa');
-        Route::get('absen-siswa-terbatas/update-absen/{id}/{status}', 'AbsensiTerbatasController@absen_update')->name('absenUpdate');
+        Route::get('/terbatas/absen-siswa-terbatas-sd', 'AbsensiTerbatasController@sd_mi');
+        Route::get('/terbatas/absen-siswa-terbatas-smp', 'AbsensiTerbatasController@smp_mts');
+        Route::get('/terbatas/absen-siswa-terbatas-sma_ips', 'AbsensiTerbatasController@sma_ips');
+        Route::get('/terbatas/absen-siswa-terbatas-sma_ipa', 'AbsensiTerbatasController@sma_ipa');
+        Route::get('/terbatas/absen-siswa-terbatas-sbmptn', 'AbsensiTerbatasController@sbmptn');
+        Route::get('/terbatas/absen-siswa-terbatas-kedinasan', 'AbsensiTerbatasController@kedinasan');
+        Route::resource('/terbatas/absen-siswa-terbatas', 'AbsensiTerbatasController');
+        Route::get('/terbatas/absen-siswa-terbatas/tambah-siswa/{absen}', 'AbsensiTerbatasController@tambah_siswa')->name('TambahSiswa');
+        Route::get('/terbatas/absen-siswa-terbatas/update-absen/{id}/{status}', 'AbsensiTerbatasController@absen_update')->name('absenUpdate');
 
         // Transaksi
         Route::resource('transaksi', 'TransaksiController');
