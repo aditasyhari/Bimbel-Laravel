@@ -18,27 +18,38 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">Tabel Kelas Yang diBeli</h4>
+                            <h4 class="card-title">Kelas Yang diBeli</h4>
                         </div>
                         <div class="card-content">
                             <div class="card-body card-dashboard">
                                 <div class="table-responsive">
                                     <table class="table zero-configuration">
-                                        <thead class="text-center">
+                                        <thead class="">
                                             <tr>
+                                                <th></th>
                                                 <th>Nama</th>
                                                 <th>Kelas</th>
+                                                <th>Kategori</th>
                                                 <th>Paket</th>
-                                                <th>Keterangan</th>
+                                                <th></th>
                                             </tr>
                                         </thead>
-                                        <tbody class="text-center">
+                                        <tbody class="">
+                                        @foreach($transaksi as $t)
                                             <tr>
-                                                <td>Wita Ananta</td>
-                                                <td>SMA</td>
-                                                <td>Regular</td>
-                                                <td>iki Keterangan</td>
+                                                <?php
+                                                    $kelas = \App\Kelas::find($t->kelas_id);
+                                                ?>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ Auth()->user()->profileUser->nama }}</td>
+                                                <td>{{ $kelas->nama_kelas }}</td>
+                                                <td class="text-uppercase">{{ $kelas->kategori }}</td>
+                                                <td class="text-uppercase">{{ $kelas->kategori_kelas }}</td>
+                                                <td>
+                                                    <button type="button" class="btn btn-sm btn-info" onclick="kelas({{ $kelas->id }})">Lihat</button>
+                                                </td>
                                             </tr>
+                                        @endforeach
                                         </tbody>
                                     </table>
                                 </div>
@@ -57,4 +68,10 @@
 <script src="{{asset('/app-assets/vendors/js/tables/datatable/datatables.buttons.min.js')}}"></script>
 <script src="{{asset('/app-assets/vendors/js/tables/datatable/datatables.bootstrap4.min.js')}}"></script>
 <script src="{{asset('/app-assets/js/scripts/datatables/datatable.js')}}"></script>
+
+<script>
+    function kelas(id) {
+        window.location.href = "{!! url('/kelas/"+id+"') !!}"
+    }
+</script>
 @endpush

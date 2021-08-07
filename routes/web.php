@@ -29,6 +29,7 @@ Route::resource('/keranjang', 'Frontend\KeranjangController');
 Auth::routes();
 Route::middleware(['auth'])->group(function() {
 
+    // Route Admin
     Route::group(['prefix' => 'admin', 'middleware' => 'admin', 'name' => 'admin'], function () {
         // dashboard
         Route::get('/', 'DashboardController@index')->name('AdminDashboard');
@@ -101,7 +102,6 @@ Route::middleware(['auth'])->group(function() {
             return view('admin.siswa.kelas_terbatas.sd.edit');
         });
 
-
         // absensi regular
         Route::get('/regular/absen-siswa-regular-sd', 'AbsensiRegularController@sd_mi');
         Route::get('/regular/absen-siswa-regular-smp', 'AbsensiRegularController@smp_mts');
@@ -126,33 +126,28 @@ Route::middleware(['auth'])->group(function() {
 
         // Transaksi
         Route::resource('transaksi', 'TransaksiController');
-
         
-
-        
-
     });
 
+    // Route Siswa
     Route::group(['prefix' => 'siswa', 'middleware' => 'siswa', 'name' => 'siswa'], function () {
         Route::get('/', function () {
             return view('pengguna.dashboard');
         });
 
-        Route::resource('transaksi', 'Siswa\TransaksiController');
         Route::resource('profile', 'ProfileUserController');
         Route::put('/profile/pic/update/{id}', 'ProfileUserController@updateProfile');
 
-        Route::get('/kelas-siswa', function () {
-            return view('pengguna.kelas');
-        });
-        Route::get('/absen-siswa', function () {
-            return view('pengguna.absen');
-        });
+        Route::resource('transaksi', 'Siswa\TransaksiController');
+        Route::resource('kelas-siswa', 'Siswa\KelasController');
+        Route::resource('absen-siswa', 'Siswa\AbsenController');
+
         Route::get('/jadwal-siswa', function () {
             return view('pengguna.jadwal');
         });
     });
 
+    // Route Orang Tua
     Route::group(['prefix' => 'ortu', 'middleware' => 'ortu', 'name' => 'ortu'], function () {
 
     });

@@ -18,35 +18,67 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">Tabel Absen</h4>
+                            <h4 class="card-title">Riwayat Absen</h4>
                         </div>
                         <div class="card-content">
                             <div class="card-body card-dashboard">
                                 <div class="table-responsive">
                                     <table class="table zero-configuration">
-                                        <thead class="text-center">
+                                        <thead class="">
                                             <tr>
+                                                <th>Tanggal</th>
                                                 <th>Nama</th>
                                                 <th>Kelas</th>
                                                 <th>Paket</th>
-                                                <th>Tanggal</th>
                                                 <th>Status</th>
                                             </tr>
                                         </thead>
-                                        <tbody class="text-center">
+                                        <tbody class="">
+                                        @foreach($absen as $a)
+                                            @foreach($a->absensiUser as $ab)
                                             <tr>
-                                                <td>Wita Ananta</td>
-                                                <td>SMA</td>
-                                                <td>Regular</td>
-                                                <td>1 Juli 2021</td>
+                                                <?php
+                                                    $user = \App\User::find($ab->user_id);
+                                                    $kelas = \App\Kelas::find($a->id_kelas);
+                                                ?>
+                                                <td>{{ Carbon\Carbon::parse($a->tanggal)->isoFormat('dddd, D MMMM Y') }}</td>
+                                                <td>{{ $user->profileUser->nama }}</td>
+                                                <td class="text->uppercase">{{ $kelas->kategori }}</td>
+                                                <td class="text-capitalize">{{ $kelas->kategori_kelas }}</td>
                                                 <td>
-                                                    <div class="chip chip-success">
-                                                        <div class="chip-body">
-                                                            <span class="chip-text">Hadir</span>
-                                                        </div>
-                                                    </div>
+                                                    @switch($ab->status)
+                                                        @case('hadir')
+                                                            <div class="chip chip-success">
+                                                                <div class="chip-body">
+                                                                    <div class="chip-text">Hadir</div>
+                                                                </div>
+                                                            </div>
+                                                            @break
+                                                        @case('izin')
+                                                            <div class="chip chip-warning">
+                                                                <div class="chip-body">
+                                                                    <div class="chip-text">Izin</div>
+                                                                </div>
+                                                            </div>
+                                                            @break
+                                                        @case('tidak hadir')
+                                                            <div class="chip chip-danger">
+                                                                <div class="chip-body">
+                                                                    <div class="chip-text">Tidak Hadir</div>
+                                                                </div>
+                                                            </div>
+                                                            @break
+                                                        @default
+                                                            <div class="chip chip-secondary">
+                                                                <div class="chip-body">
+                                                                    <div class="chip-text">None</div>
+                                                                </div>
+                                                            </div>
+                                                    @endswitch
                                                 </td>
                                             </tr>
+                                            @endforeach
+                                        @endforeach
                                         </tbody>
                                     </table>
                                 </div>

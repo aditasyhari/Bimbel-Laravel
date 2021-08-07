@@ -52,10 +52,10 @@ button.btn.btn-outline-primary {
                             @foreach($k->transaksi as $t)
                                 <td class="product-img">
                                     @if($t->bukti == '')
-                                        <h5>Belum<br>Ada</h5>
+                                        <h6>Belum Ada</h6>
                                     @else
-                                        <img src="{{asset('app-assets/images/elements/bukti-tf/'.$t->bukti)}}" alt="Bukti Transfer"><br>
-                                        <a class="ml-2 btn btn-sm btn-primary" href="{{asset('app-assets/images/elements/bukti-tf/'.$t->bukti)}}" target="_blank" rel="noopener noreferrer">Lihat</a>
+                                        <img src="{{asset('app-assets/images/elements/bukti-tf/'.$t->bukti)}}" alt="Bukti Transfer" style="max-width: 70px; height: auto;"><br>
+                                        <a class="mt-1 btn btn-sm btn-primary" href="{{asset('app-assets/images/elements/bukti-tf/'.$t->bukti)}}" target="_blank" rel="noopener noreferrer">Lihat</a>
 
                                     @endif
                                 </td>
