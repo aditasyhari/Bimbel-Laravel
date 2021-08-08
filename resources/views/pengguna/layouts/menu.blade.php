@@ -26,7 +26,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#">
+                    <a href="{{url('siswa/jadwal-siswa')}}">
                         <i class="feather icon-file-text"></i><span class="menu-title" data-i18n="Absen">Jadwal</span>
                     </a>
                 </li>

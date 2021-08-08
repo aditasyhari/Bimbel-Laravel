@@ -142,9 +142,10 @@ Route::middleware(['auth'])->group(function() {
         Route::resource('kelas-siswa', 'Siswa\KelasController');
         Route::resource('absen-siswa', 'Siswa\AbsenController');
 
-        Route::get('/jadwal-siswa', function () {
-            return view('pengguna.jadwal');
-        });
+        Route::resource('jadwal-siswa', 'Siswa\JadwalSiswaController');
+        // Route::resource('jadwal-kelas-regular', 'JadwalRegularController');
+        // Route::get('/jadwal-kelas-terbatas', 'JadwalTerbatasController@index')->name('JadwalKelasTerbatas');
+        // Route::post('/jadwal-kelas-terbatas/jadwal', 'JadwalTerbatasController@jadwal');
     });
 
     // Route Orang Tua

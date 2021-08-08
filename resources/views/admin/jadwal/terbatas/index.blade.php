@@ -40,7 +40,8 @@ Jadwal Kelas Terbatas
                     <div class="card">
                         <div class="card-content">
                             <div class="card-body">
-                                <h2>Jadwal Kelas Terbatas</h2><hr>
+                                <h2>Jadwal Kelas</h2>
+                                <hr>
                                 
                                 <!-- <div id='fc-default'></div> -->
                                 <div id='calendar'></div>

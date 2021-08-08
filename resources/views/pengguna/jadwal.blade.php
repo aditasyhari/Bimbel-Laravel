@@ -40,6 +40,16 @@ Jadwal Siswa
                     <div class="card">
                         <div class="card-content">
                             <div class="card-body">
+                                <div class="d-flex flex-row justify-content-between">
+                                    <h2>Jadwal Kelas</h2>
+                                    <div>
+                                        <span class="border border-secondary rounded-circle" style="background-color: darkorange; padding: 3px 12px;"></span>
+                                        <span class="ml-1 mr-2">Terbatas</span>
+                                        <span class="border border-secondary rounded-circle" style="background-color: navy; padding: 3px 12px;"></span>
+                                        <span class="ml-1">Regular</span>
+                                    </div>
+                                </div>
+                                <hr>
                                 
                                 <!-- <div id='fc-default'></div> -->
                                 <div id='calendar'></div>
@@ -48,62 +58,7 @@ Jadwal Siswa
                     </div>
                 </div>
             </div>
-            <!-- calendar Modal starts-->
-            <div class="modal fade text-left modal-calendar" tabindex="-1" role="dialog"
-                aria-labelledby="cal-modal" aria-modal="true">
-                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-sm"
-                    role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title text-text-bold-600" id="cal-modal">Add Event</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                        </div>
-                        <form id="form-add">
-                            
-                            <div class="modal-body">
-                                <div class="d-flex justify-content-between align-items-center add-category">
-                                    <div class="chip-wrapper"></div>
-                                </div>
-                                <fieldset class="form-label-group">
-                                    <input type="text" class="form-control" id="cal-event-title"
-                                        placeholder="Event Title" name="title" required>
-                                    <label for="cal-event-title">Jadwal Title</label>
-                                </fieldset>
-                                <fieldset class="form-label-group">
-                                    <input type="text" class="form-control pickadate" id="cal-start-date"
-                                        placeholder="Start Date">
-                                    <label for="cal-start-date">Start Date</label>
-                                </fieldset>
-                                <fieldset class="form-label-group">
-                                    <input type="text" class="form-control pickadate" id="cal-end-date"
-                                        placeholder="End Date">
-                                    <label for="cal-end-date">End Date</label>
-                                </fieldset>
-                                <fieldset class="form-label-group">
-                                    <textarea class="form-control" id="cal-description" rows="5"
-                                        placeholder="Description" name="desc" required></textarea>
-                                    <label for="cal-description">Description</label>
-                                </fieldset>
-                            </div>
-                            <div class="modal-footer">
-                                <button class="btn btn-primary cal-add-event waves-effect waves-light" id="btn-add">Add</button>
-                                <!-- <button type="button"
-                                    class="btn btn-primary d-none cal-submit-event waves-effect waves-light"
-                                    disabled>submit</button> -->
-                                <button type="button"
-                                    class="btn btn-flat-danger cancel-event waves-effect waves-light"
-                                    data-dismiss="modal">Cancel</button>
-                                <!-- <button type="button"
-                                    class="btn btn-flat-danger remove-event d-none waves-effect waves-light"
-                                    data-dismiss="modal">Remove</button> -->
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <!-- calendar Modal ends-->
+
         </section>
         <!-- // Full calendar end -->
 
@@ -131,7 +86,7 @@ Jadwal Siswa
 
 <script>
 
-var site_url = "/admin/jadwal-kelas-regular"
+var site_url = "/siswa/jadwal-siswa"
 
 document.addEventListener('DOMContentLoaded', function () {
 
@@ -146,94 +101,101 @@ document.addEventListener('DOMContentLoaded', function () {
         events: site_url,
         displayEventTime: false,
         editable: true,
+        eventColor: ['black', 'pink'],
         eventRender: function(event, element, view) {
             if (event.allDay === 'true') {
                 event.allDay = true;
             } else {
+                // console.log(event)
+                if(event.kategori_kelas == 'terbatas') {
+                    element.css("background-color", 'darkorange');
+                } else {
+                    element.css("background-color", 'navy');
+                }
                 event.allDay = false;
             }
         },
-        selectable: true,
-        selectHelper: true,
-        select: function(start, end, allDay) {
+        // selectable: true,
+        // selectHelper: true,
+        // select: function(start, end, allDay) {
 
-            var title = prompt('Jadwal Title:');
-            if(title != null) {
-                var desc = prompt('Desc:');
-            }
-            // $(".modal-calendar").modal("show");
-            if(title) {
-                // var title = document.getElementById('cal-event-title').value;
-                // var desc = document.getElementById('cal-description').value;
-                var start = $.fullCalendar.formatDate(start, "Y-MM-DD");
-                var end = $.fullCalendar.formatDate(end, "Y-MM-DD");
-                $.ajax({
-                    url: site_url + "/jadwal",
-                    data: {
-                        title: title,
-                        start: start,
-                        end: end,
-                        desc: desc,
-                        type: 'add'
-                    },
-                    type: "POST",
-                    success: function(data) {
-                        displayMessage("Jadwal berhasil ditambahkan !");
+        //     var title = prompt('Jadwal Title:');
+        //     if(title != null) {
+        //         var desc = prompt('Desc:');
+        //     }
+        //     // $(".modal-calendar").modal("show");
+        //     if(title) {
+        //         // var title = document.getElementById('cal-event-title').value;
+        //         // var desc = document.getElementById('cal-description').value;
+        //         var start = $.fullCalendar.formatDate(start, "Y-MM-DD");
+        //         var end = $.fullCalendar.formatDate(end, "Y-MM-DD");
+        //         $.ajax({
+        //             url: site_url + "/jadwal",
+        //             data: {
+        //                 title: title,
+        //                 start: start,
+        //                 end: end,
+        //                 desc: desc,
+        //                 type: 'add'
+        //             },
+        //             type: "POST",
+        //             success: function(data) {
+        //                 displayMessage("Jadwal berhasil ditambahkan !");
 
-                        calendar.fullCalendar('renderEvent', {
-                            id: data.id,
-                            title: title,
-                            start: start,
-                            end: end,
-                            allDay: allDay
-                        }, true);
+        //                 calendar.fullCalendar('renderEvent', {
+        //                     id: data.id,
+        //                     title: title,
+        //                     start: start,
+        //                     end: end,
+        //                     allDay: allDay
+        //                 }, true);
 
-                        calendar.fullCalendar('unselect');
-                        $('.modal-calendar').modal('hide');
-                    }
-                });
-            }
-        },
+        //                 calendar.fullCalendar('unselect');
+        //                 $('.modal-calendar').modal('hide');
+        //             }
+        //         });
+        //     }
+        // },
 
-        eventDrop: function(event, delta) {
-            var start = $.fullCalendar.formatDate(event.start, "Y-MM-DD");
-            var end = $.fullCalendar.formatDate(event.end, "Y-MM-DD");
+        // eventDrop: function(event, delta) {
+        //     var start = $.fullCalendar.formatDate(event.start, "Y-MM-DD");
+        //     var end = $.fullCalendar.formatDate(event.end, "Y-MM-DD");
 
-            $.ajax({
-                url: site_url + '/jadwal',
-                data: {
-                    title: event.title,
-                    start: start,
-                    end: end,
-                    id: event.id,
-                    type: 'update'
-                },
-                type: "POST",
-                success: function(response) {
+        //     $.ajax({
+        //         url: site_url + '/jadwal',
+        //         data: {
+        //             title: event.title,
+        //             start: start,
+        //             end: end,
+        //             id: event.id,
+        //             type: 'update'
+        //         },
+        //         type: "POST",
+        //         success: function(response) {
 
-                    displayMessage("Jadwal berhasil diupdate !");
-                }
-            });
-        },
+        //             displayMessage("Jadwal berhasil diupdate !");
+        //         }
+        //     });
+        // },
 
-        eventClick: function(event) {
-            var deleteMsg = confirm("Yakin menghapus jadwal?");
-            if (deleteMsg) {
-                $.ajax({
-                    type: "POST",
-                    url: site_url + '/jadwal',
-                    data: {
-                        id: event.id,
-                        type: 'delete'
-                    },
-                    success: function(response) {
+        // eventClick: function(event) {
+        //     var deleteMsg = confirm("Yakin menghapus jadwal?");
+        //     if (deleteMsg) {
+        //         $.ajax({
+        //             type: "POST",
+        //             url: site_url + '/jadwal',
+        //             data: {
+        //                 id: event.id,
+        //                 type: 'delete'
+        //             },
+        //             success: function(response) {
 
-                        calendar.fullCalendar('removeEvents', event.id);
-                        displayMessage("Event Deleted Successfully");
-                    }
-                });
-            }
-        }
+        //                 calendar.fullCalendar('removeEvents', event.id);
+        //                 displayMessage("Event Deleted Successfully");
+        //             }
+        //         });
+        //     }
+        // }
 
     });
 
