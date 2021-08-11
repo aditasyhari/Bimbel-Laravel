@@ -4,6 +4,11 @@
 Dashboard Siswa
 @endsection
 
+@push('plugin-styles')
+<link rel="stylesheet" type="text/css" href="{{asset('/app-assets/vendors/css/vendors.min.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('/app-assets/vendors/css/tables/datatable/datatables.min.css')}}">
+@endpush
+
 @section('content')
 <div class="content-overlay"></div>
 <div class="header-navbar-shadow"></div>
@@ -42,27 +47,39 @@ Dashboard Siswa
         <section class="app-ecommerce-details">
             <div class="card">
                 <div class="card-body">
-                    <div class="row mb-5 mt-2">
-                        <div class="col-12 col-md-5 d-flex align-items-center justify-content-center mb-2 mb-md-0">
-                            <div class="d-flex align-items-center justify-content-center">
-                                <img src="{{asset('img/logo-sma.png')}}" class="img-fluid" alt="product image">
-                            </div>
+                    <div class="row mb-5 mt-2 pl-2 pr-2">
+                        <p>5 Kelas terakhir yang dibeli</h>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th></th>
+                                        <th>Kelas</th>
+                                        <th>Kategori</th>
+                                        <th>Paket</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody class="">
+                                @foreach($transaksi as $t)
+                                    <tr>
+                                        <?php
+                                            $kelas = \App\Kelas::find($t->kelas_id);
+                                        ?>
+                                        <td class="text-center">
+                                            <img src="{{ asset('app-assets/images/thumbnail/kelas/'.$kelas->thumbnail) }}" alt="Thumbnail" class="img-fluid" style="max-width:150px; max-height:150px;">
+                                        </td>
+                                        <td>{{ $kelas->nama_kelas }}</td>
+                                        <td class="text-uppercase">{{ $kelas->kategori }}</td>
+                                        <td class="text-uppercase">{{ $kelas->kategori_kelas }}</td>
+                                        <td>
+                                            <button type="button" class="btn btn-sm btn-info" onclick="kelas({{ $kelas->id }})">Lihat</button>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
                         </div>
-                        <div class="col-12 col-md-6">
-                            <h5>Kelas SMA - IPA
-                            </h5>
-                            <p class="text-muted">Regular</p>
-                            <div class="ecommerce-details-price d-flex flex-wrap">
-
-                                <p class="text-primary font-medium-3 mr-1 mb-0">Rp. 800.000</p>
-                                
-                            </div>
-                            <hr>
-                            <p>Keterangan iki bos photos and videos with this Canon EOS 5D Mk V 24-70mm lens kit. A huge 30.4-megapixel
-                                full-frame sensor delivers outstanding image clarity, and 4K video is possible from this DSLR for powerful
-                                films. Ultra-precise autofocus and huge ISO ranges give you the images you want from this Canon EOS 5D Mk V
-                                24-70mm lens kit.</p>
-                          </div>
                     </div>
                 </div>
             </div>
@@ -71,3 +88,16 @@ Dashboard Siswa
 </div>
 
 @endsection('content')
+
+@push('plugin-scripts')
+<script src="{{asset('/app-assets/vendors/js/tables/datatable/datatables.min.js')}}"></script>
+<script src="{{asset('/app-assets/vendors/js/tables/datatable/datatables.buttons.min.js')}}"></script>
+<script src="{{asset('/app-assets/vendors/js/tables/datatable/datatables.bootstrap4.min.js')}}"></script>
+<script src="{{asset('/app-assets/js/scripts/datatables/datatable.js')}}"></script>
+
+<script>
+    function kelas(id) {
+        window.location.href = "{!! url('/kelas/"+id+"') !!}"
+    }
+</script>
+@endpush

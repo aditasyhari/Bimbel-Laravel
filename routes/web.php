@@ -131,9 +131,8 @@ Route::middleware(['auth'])->group(function() {
 
     // Route Siswa
     Route::group(['prefix' => 'siswa', 'middleware' => 'siswa', 'name' => 'siswa'], function () {
-        Route::get('/', function () {
-            return view('pengguna.dashboard');
-        });
+        Route::get('/', 'Siswa\DashboardController@index')->name('SiswaDashboard');
+        Route::post('/tandai', 'Siswa\DashboardController@tandai')->name('SiswaTandaiLihat');
 
         Route::resource('profile', 'ProfileUserController');
         Route::put('/profile/pic/update/{id}', 'ProfileUserController@updateProfile');

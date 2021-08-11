@@ -46,20 +46,21 @@ button.btn.btn-outline-primary {
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($u->kelas as $k)
+                        @foreach($transaksi as $t)
+                        <?php
+                            $k = \App\Kelas::find($t->kelas_id);
+                        ?>
                         <tr>
                             <td></td>
-                            @foreach($k->transaksi as $t)
-                                <td class="product-img">
-                                    @if($t->bukti == '')
-                                        <h6>Belum Ada</h6>
-                                    @else
-                                        <img src="{{asset('app-assets/images/elements/bukti-tf/'.$t->bukti)}}" alt="Bukti Transfer" style="max-width: 70px; height: auto;"><br>
-                                        <a class="mt-1 btn btn-sm btn-primary" href="{{asset('app-assets/images/elements/bukti-tf/'.$t->bukti)}}" target="_blank" rel="noopener noreferrer">Lihat</a>
+                            <td class="product-img">
+                                @if($t->bukti == '')
+                                    <h6>Belum Ada</h6>
+                                @else
+                                    <img src="{{asset('app-assets/images/elements/bukti-tf/'.$t->bukti)}}" alt="Bukti Transfer" style="max-width: 70px; height: auto;"><br>
+                                    <a class="mt-1 btn btn-sm btn-primary" href="{{asset('app-assets/images/elements/bukti-tf/'.$t->bukti)}}" target="_blank" rel="noopener noreferrer">Lihat</a>
 
-                                    @endif
-                                </td>
-                            @endforeach
+                                @endif
+                            </td>
                             <td class="product-name">{{ $k->nama_kelas }}</td>
                             <td class="product-category">{{ $k->kategori }}</td>
                             <td>
@@ -78,25 +79,23 @@ button.btn.btn-outline-primary {
                                 </div>
                             </td>
                             <td class="product-price">Rp {{ number_format($k->harga, 0, ",",".") }}</td>
-                            @foreach($k->transaksi as $t)
-                                <td class="text-capitalize">{{ $t->status_bayar }}</td>
-                                <td>
-                                    @if($t->status_bayar == 'lunas')
-                                        <div class="text-success">Sudah Dibayar</div>
-                                    @else
-                                        <form id="form-bukti{{$t->id}}" action="{{ url('/siswa/transaksi') }}" method="POST" enctype="multipart/form-data">
-                                        @csrf
-                                            <div class="input-group">
-                                                <div class="custom-file" style="max-width: 180px;">
-                                                    <input type="hidden" value="{{ $t->id }}" name="id">
-                                                    <input type="file" class="custom-file-input" name="bukti" accept="image/*" onchange="$('#form-bukti{{$t->id}}').submit()">
-                                                    <label class="custom-file-label">Upload Bukti</label>
-                                                </div>
+                            <td class="text-capitalize">{{ $t->status_bayar }}</td>
+                            <td>
+                                @if($t->status_bayar == 'lunas')
+                                    <div class="text-success">Sudah Dibayar</div>
+                                @else
+                                    <form id="form-bukti{{$t->id}}" action="{{ url('/siswa/transaksi') }}" method="POST" enctype="multipart/form-data">
+                                    @csrf
+                                        <div class="input-group">
+                                            <div class="custom-file" style="max-width: 180px;">
+                                                <input type="hidden" value="{{ $t->id }}" name="id">
+                                                <input type="file" class="custom-file-input" name="bukti" accept="image/*" onchange="$('#form-bukti{{$t->id}}').submit()">
+                                                <label class="custom-file-label">Upload Bukti</label>
                                             </div>
-                                        </form>
-                                    @endif
-                                </td>
-                            @endforeach
+                                        </div>
+                                    </form>
+                                @endif
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>

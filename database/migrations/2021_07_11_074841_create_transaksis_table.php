@@ -19,6 +19,7 @@ class CreateTransaksisTable extends Migration
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreignId('kelas_id')->references('id')->on('kelas')->onDelete('cascade');
             $table->enum('status_bayar', ['ditolak', 'pending', 'belum bayar', 'lunas'])->default('belum bayar');
+            $table->boolean('user_read')->default(false);
             $table->timestamps();
         });
     }

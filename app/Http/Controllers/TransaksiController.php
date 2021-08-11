@@ -42,6 +42,7 @@ class TransaksiController extends Controller
 
         $t->update([
             'status_bayar' => $request->status_bayar,
+            'user_read' => 0
         ]);
 
         return back()->with('status', 'Status Transaksi berhasil diperbarui');

@@ -5,11 +5,10 @@ namespace App\Http\Controllers\Siswa;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\User;
-use App\Transaksi;
 use App\Kelas;
+use App\Transaksi;
 
-class TransaksiController extends Controller
+class DashboardController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,10 +18,25 @@ class TransaksiController extends Controller
     public function index()
     {
         //
-        $id = Auth::user()->id;
-        $transaksi = Transaksi::where('user_id', $id)->orderBy('updated_at', 'desc')->get();
+        $transaksi = Transaksi::where('user_id', Auth::user()->id)
+                ->where('status_bayar', 'lunas')
+                ->orderBy('updated_at', 'desc')
+                ->take(5)
+                ->get();
 
-        return view('pengguna.transaksi', compact(['transaksi']));
+        return view('pengguna.dashboard', compact(['transaksi']));
+    }
+
+    public function tandai()
+    {
+        $notifikasi = Transaksi::where([
+            ['status_bayar', 'lunas'],
+            ['user_read', false]
+        ])
+        ->where('user_id', Auth()->user()->id);
+
+        $notifikasi->update(['user_read'=>1]);
+        return back()->with('status', 'Notifikasi dengan status bayar LUNAS sudah dilihat semua.');
     }
 
     /**
@@ -44,40 +58,6 @@ class TransaksiController extends Controller
     public function store(Request $request)
     {
         //
-        $this->validate($request, [
-            'bukti' => 'file|max:2048',
-        ]);
-
-        $t = Transaksi::find($request->id);
-
-        $path = public_path().'/app-assets/images/elements/bukti-tf/';
-
-        if($t->bukti != null) {
-            $pic_old = $path.$t->bukti;
-            unlink($pic_old);
-
-            $pic_new = $request->bukti;
-            $foto_name = time().'_'.$pic_new->getClientOriginalName();
-            $pic_new->move($path, $foto_name);
-
-            $t->update([
-                'bukti' => $foto_name,
-                'status_bayar' => 'pending'
-            ]);
-
-            return back()->with('status', 'Bukti transfer sudah diunggah, tunggu konfirmasi dari Admin');
-        } else {
-            $pic_new = $request->bukti;
-            $foto_name = time().'_'.$pic_new->getClientOriginalName();
-            $pic_new->move($path, $foto_name);
-
-            $t->update([
-                'bukti' => $foto_name,
-                'status_bayar' => 'pending'
-            ]);
-
-            return back()->with('status', 'Bukti transfer sudah diunggah, tunggu konfirmasi dari Admin');
-        }
     }
 
     /**

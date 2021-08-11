@@ -24,9 +24,9 @@
                                 </div>
                             </li>
                             <li class="scrollable-container media-list">
+                                @foreach($notifikasi as $notif)
                                 <div class="d-flex justify-content-between">
                                     <div class="media d-flex align-items-start">
-                                    @foreach($notifikasi as $notif)
                                         <?php
                                             $user = \App\User::find($notif->user_id);
                                             $kelas = \App\Kelas::find($notif->kelas_id);
@@ -38,9 +38,9 @@
                                                 class="notification-text">{{ $kelas->nama_kelas }} - {{ $kelas->kategori_kelas }}</small>
                                         </div><small>
                                             <time class="media-meta" datetime="2015-06-11T18:29:20+08:00">{{ $notif->updated_at }}</time></small>
-                                    @endforeach
                                     </div>
                                 </div>
+                                @endforeach
                             </li>
                             <li class="dropdown-menu-footer">
                             @if($hitung_notif > 0)
