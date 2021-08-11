@@ -81,7 +81,9 @@
                                     height="40" width="40"></span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
+                            @if(Auth::user()->role == 'siswa')
                             <a class="dropdown-item" href="{{ route('profile.index') }}"><i class="feather icon-user"></i> Profile</a>
+                            @endif
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item"
                                 onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i

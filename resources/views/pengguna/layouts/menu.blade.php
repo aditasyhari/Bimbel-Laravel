@@ -1,44 +1,86 @@
+@if(Auth::user()->role == 'siswa')
 {{-- <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" data-scroll-to-active="true"> --}}
+<div class="navbar-header">
+    <ul class="nav navbar-nav flex-row">
+        <li class="nav-item mr-auto"><a class="navbar-brand" href="{{ url('/') }}">
+                {{-- <div class="brand-logo"></div> --}}
+                <h2 class="brand-text mb-0">Dasapratama</h2>
+            </a></li>
+        <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pr-0" data-toggle="collapse"><i
+                    class="feather icon-x d-block d-xl-none font-medium-4 primary toggle-icon"></i><i
+                    class="toggle-icon feather icon-disc font-medium-4 d-none d-xl-block collapse-toggle-icon primary"
+                    data-ticon="icon-disc"></i></a></li>
+    </ul>
+</div>
+<div class="shadow-bottom"></div>
+<div class="main-menu-content">
+    <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+        <li class=" nav-item {{  request()->routeIs('SiswaDashboard') ? 'active' : '' }}">
+            <a href="{{url('siswa')}}">
+                <i class="feather icon-home"></i><span class="menu-title" data-i18n="Dashboard">Dashboard</span>
+            </a>
+        </li>
+        <li class=" navigation-header"><span>Apps</span>
+        </li>
+        <li class="nav-item {{  request()->routeIs('kelas-siswa.*') ? 'active' : '' }}">
+            <a href="{{url('siswa/kelas-siswa')}}">
+                <i class="feather icon-user"></i><span class="menu-title" data-i18n="User">Kelas</span>
+            </a>
+        </li>
+        <li class="nav-item {{  request()->routeIs('absen-siswa.*') ? 'active' : '' }}">
+            <a href="{{url('siswa/absen-siswa')}}">
+                <i class="feather icon-check-square"></i><span class="menu-title" data-i18n="Absen">Absen</span>
+            </a>
+        </li>
+        <li class="nav-item {{  request()->routeIs('jadwal-siswa.*') ? 'active' : '' }}">
+            <a href="{{url('siswa/jadwal-siswa')}}">
+                <i class="feather icon-file-text"></i><span class="menu-title" data-i18n="Absen">Jadwal</span>
+            </a>
+        </li>
+
+        <li class="nav-item {{  request()->routeIs('transaksi.*') ? 'active' : '' }}">
+            <a href="{{ url('/siswa/transaksi') }}">
+                <i class="feather icon-user"></i><span class="menu-title" data-i18n="User">Transaksi</span>
+            </a>
+        </li>
+    </ul>
+</div>
+@endif
+    @if(Auth::user()->role == 'ortu')
+        {{-- <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" data-scroll-to-active="true"> --}}
         <div class="navbar-header">
             <ul class="nav navbar-nav flex-row">
                 <li class="nav-item mr-auto"><a class="navbar-brand" href="{{ url('/') }}">
                         {{-- <div class="brand-logo"></div> --}}
                         <h2 class="brand-text mb-0">Dasapratama</h2>
                     </a></li>
-                <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pr-0" data-toggle="collapse"><i class="feather icon-x d-block d-xl-none font-medium-4 primary toggle-icon"></i><i class="toggle-icon feather icon-disc font-medium-4 d-none d-xl-block collapse-toggle-icon primary" data-ticon="icon-disc"></i></a></li>
+                <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pr-0" data-toggle="collapse"><i
+                            class="feather icon-x d-block d-xl-none font-medium-4 primary toggle-icon"></i><i
+                            class="toggle-icon feather icon-disc font-medium-4 d-none d-xl-block collapse-toggle-icon primary"
+                            data-ticon="icon-disc"></i></a></li>
             </ul>
         </div>
         <div class="shadow-bottom"></div>
         <div class="main-menu-content">
             <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-                <li class=" nav-item {{  request()->routeIs('SiswaDashboard') ? 'active' : '' }}">
-                    <a href="{{url('siswa')}}">
+                <li class=" nav-item {{  request()->routeIs('') ? 'active' : '' }}">
+                    <a href="{{url('ortu/')}}">
                         <i class="feather icon-home"></i><span class="menu-title" data-i18n="Dashboard">Dashboard</span>
                     </a>
                 </li>
                 <li class=" navigation-header"><span>Apps</span>
                 </li>
-                <li class="nav-item {{  request()->routeIs('kelas-siswa.*') ? 'active' : '' }}">
-                    <a href="{{url('siswa/kelas-siswa')}}">
-                        <i class="feather icon-user"></i><span class="menu-title" data-i18n="User">Kelas</span>
-                    </a>
-                </li>
-                <li class="nav-item {{  request()->routeIs('absen-siswa.*') ? 'active' : '' }}">
-                    <a href="{{url('siswa/absen-siswa')}}">
+                <li class="nav-item {{  request()->routeIs('absen.*') ? 'active' : '' }}">
+                    <a href="{{url('ortu/absen')}}">
                         <i class="feather icon-check-square"></i><span class="menu-title" data-i18n="Absen">Absen</span>
                     </a>
                 </li>
                 <li class="nav-item {{  request()->routeIs('jadwal-siswa.*') ? 'active' : '' }}">
-                    <a href="{{url('siswa/jadwal-siswa')}}">
+                    <a href="{{url('ortu/jadwal-siswa')}}">
                         <i class="feather icon-file-text"></i><span class="menu-title" data-i18n="Absen">Jadwal</span>
-                    </a>
-                </li>
-                
-                <li class="nav-item {{  request()->routeIs('transaksi.*') ? 'active' : '' }}">
-                    <a href="{{ url('/siswa/transaksi') }}">
-                        <i class="feather icon-user"></i><span class="menu-title" data-i18n="User">Transaksi</span>
                     </a>
                 </li>
             </ul>
         </div>
-        
+
+        @endif

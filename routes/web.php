@@ -126,7 +126,7 @@ Route::middleware(['auth'])->group(function() {
 
         // Transaksi
         Route::resource('transaksi', 'TransaksiController');
-        
+
     });
 
     // Route Siswa
@@ -149,6 +149,12 @@ Route::middleware(['auth'])->group(function() {
 
     // Route Orang Tua
     Route::group(['prefix' => 'ortu', 'middleware' => 'ortu', 'name' => 'ortu'], function () {
+        Route::get('/', function () {
+            return view('ortu.dashboard');
+        });
+        Route::resource('absen', 'Ortu\AbsenController');
+        // jadwal
+        Route::resource('jadwal-siswa', 'Ortu\OrtuController');
 
     });
 });
