@@ -13,7 +13,7 @@ Absen Siswa {{ $kelas->kategori }} - {{ $absen->tanggal }}
 <div class="content-wrapper">
     <div class="content-body">
         <!-- Zero configuration table -->
-        <section id="basic-datatable">
+        <section id="column-selectors">
             <div class="row">
                 <div class="col-12">
                     <div class="card">
@@ -28,7 +28,7 @@ Absen Siswa {{ $kelas->kategori }} - {{ $absen->tanggal }}
                         <div class="card-content">
                             <div class="card-body card-dashboard">
                                 <div class="table-responsive">
-                                    <table class="table zero-configuration">
+                                    <table class="table table-striped dataex-html5-selectors">
                                         <thead class="">
                                             <tr>
                                                 <th>No</th>
@@ -116,5 +116,9 @@ Absen Siswa {{ $kelas->kategori }} - {{ $absen->tanggal }}
 <script src="{{asset('/app-assets/vendors/js/tables/datatable/datatables.buttons.min.js')}}"></script>
 <script src="{{asset('/app-assets/vendors/js/tables/datatable/datatables.bootstrap4.min.js')}}"></script>
 <script src="{{asset('/app-assets/js/scripts/datatables/datatable.js')}}"></script>
-
+<script src="{{asset('/app-assets/vendors/js/tables/datatable/pdfmake.min.js')}}"></script>
+<script src="{{asset('/app-assets/vendors/js/tables/datatable/vfs_fonts.js')}}"></script>
+<script src="{{asset('/app-assets/vendors/js/tables/datatable/buttons.html5.min.js')}}"></script>
+<script src="{{asset('/app-assets/vendors/js/tables/datatable/buttons.print.min.js')}}"></script>
+<script src="{{asset('/app-assets/vendors/js/tables/datatable/buttons.bootstrap.min.js')}}"></script>
 @endpush
