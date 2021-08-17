@@ -42,6 +42,11 @@ Absen Siswa {{ $kategori }}
                                                 <td>{{ $kel->nama_kelas }}</td>
                                                 <td class="text-uppercase">{{ $kel->kategori }}</td>
                                                 <td>
+                                                    <a href="{{ route('cetak', [$a->id]) }}" class="avatar bg-primary" title="Cetak">
+                                                        <div class="avatar-content">
+                                                                <i class="avatar-icon text-white feather icon-book"></i>
+                                                        </div>
+                                                    </a>
                                                     <a href="{{ route('absen-siswa-terbatas.show', ['absen_siswa_terbata'=>$a->id]) }}" class="avatar bg-warning" title="Lihat">
                                                         <div class="avatar-content">
                                                                 <i class="avatar-icon text-white feather icon-eye"></i>

@@ -123,10 +123,12 @@ Route::middleware(['auth'])->group(function() {
         Route::resource('/terbatas/absen-siswa-terbatas', 'AbsensiTerbatasController');
         Route::get('/terbatas/absen-siswa-terbatas/tambah-siswa/{absen}', 'AbsensiTerbatasController@tambah_siswa')->name('TambahSiswa');
         Route::get('/terbatas/absen-siswa-terbatas/update-absen/{id}/{status}', 'AbsensiTerbatasController@absen_update')->name('absenUpdate');
-
+        
         // Transaksi
         Route::resource('transaksi', 'TransaksiController');
-
+        
+        //cetak PDF
+        Route::get('/terbatas/absen-siswa-terbatas/cetak/{id}', 'AbsensiTerbatasController@pdf')->name('cetak');
     });
 
     // Route Siswa
