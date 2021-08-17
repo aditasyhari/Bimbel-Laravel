@@ -196,6 +196,6 @@ class AbsensiTerbatasController extends Controller
         $kelas = Kelas::find($absen->id_kelas);
         
         $pdf = \PDF::loadView('admin.absen.cetak.cetak', compact(['absen', 'kelas', 'user']));
-        return $pdf->download('absen.pdf');
+        return $pdf->download('absen-'.$kelas->kategori.'-'.$absen->tanggal.'-'.$kelas->nama_kelas.'.pdf');
     }
 }

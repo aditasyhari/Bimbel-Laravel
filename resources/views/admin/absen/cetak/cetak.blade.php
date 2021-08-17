@@ -17,10 +17,10 @@
             "
                 width:100%;
                 text-align: center;
-                border-radius: 1px;
+                border: solid 1px black;
             "
         >
-            <thead class="">
+            <thead style="background-color: #e6e6e6;" class="">
                 <tr>
                     <th>No</th>
                     <th>Nama</th>
