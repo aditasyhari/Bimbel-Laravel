@@ -185,4 +185,16 @@ class AbsensiTerbatasController extends Controller
 
         return back()->with('status', 'Status absen berhasil diperbarui !!');
     }
+
+    public function pdf($id)
+    {
+        $absen = Absensi::find($id);
+        $user = Absensi::find($id)->user;
+        // dd($user);
+        // die();
+        $kelas = Kelas::find($absen->id_kelas);
+        
+        $pdf = \PDF::loadView('admin.absen.cetak.cetak', compact(['absen', 'kelas', 'user']));
+        return $pdf->download('absen-'.$kelas->kategori.'-'.$absen->tanggal.'-'.$kelas->nama_kelas.'.pdf');
+    }
 }
